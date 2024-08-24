@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo Asociar Palabras con Imágenes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilo para las imágenes con márgenes y tamaño uniforme */
+        #imagen-container img {
+            display: block;
+            width: 300px; /* Ajusta el tamaño según sea necesario */
+            height: 300px; /* Ajusta el tamaño según sea necesario */
+            object-fit: cover; /* Mantiene el aspecto de la imagen sin deformar */
+            margin: 10px auto;
+        }
+
+        /* Estilo para el área de respuesta y botón */
+        #respuesta-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        #respuesta {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #respuesta-container button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        #respuesta-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Barra de progreso */
+        #barra-progreso-container {
+            margin: 10px 0;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 300px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        #barra-progreso-label {
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #barra-progreso {
+            width: 100%;
+            height: 20px;
+            border-radius: 5px;
+            appearance: none;
+            background-color: #ddd;
+        }
+
+        #barra-progreso::-webkit-progress-bar {
+            border-radius: 5px;
+            background-color: #ddd;
+        }
+
+        #barra-progreso::-webkit-progress-value {
+            border-radius: 5px;
+            background-color: #4CAF50;
+        }
+
+        #mensaje-container {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Estilo para mostrar respuestas en una fila horizontal */
+        .respuesta-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .respuesta {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        #resultados-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="barra-progreso-container">
+        <div id="barra-progreso-label">Progreso</div>
+        <progress id="barra-progreso" max="10" value="0"></progress>
+    </div>
+    <div id="imagen-container">
+        <img id="imagen" src="" alt="Imagen">
+    </div>
+    <div id="respuesta-container">
+        <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+        <button onclick="verificarRespuesta()">Verificar</button>
+    </div>
+    <div id="mensaje-container">
+        <p id="mensaje"></p>
+    </div>
+    <div id="resultados-container">
+        <h2>Resultados</h2>
+        <div id="resultados-texto" class="respuesta-container"></div>
+        <button onclick="regresar()">Regresar</button>
+    </div>
+    
+    <!-- Añadir elementos de audio -->
+    <audio id="sonido-correcto" src="sounds/correcto.wav"></audio>
+    <audio id="sonido-fin-modulo" src="sounds/grito.wav"></audio>
+
+    <script src="modulo_asociar_palabras.js"></script>
+</body>
+</html>
