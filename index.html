@@ -24,7 +24,7 @@
                 </div>
                 <div class="module">
                     <img src="images/repetir.png" alt="Módulo 3">
-                    <button onclick="iniciarActividad('Módulo 3')">Módulo 3  Repetir palabras</button>
+                    <button onclick="iniciarActividad('Módulo 3')">Módulo 3 Repetir palabras</button>
                 </div>
             </section>
             <section class="instructions">
@@ -37,7 +37,7 @@
             <button class="exit-button" onclick="salir()">Salir</button>
         </footer>
     </div>
-    
+
     <!-- Contenedor para el mensaje emergente -->
     <div id="popup" class="popup">
         <div class="popup-content">
@@ -47,12 +47,21 @@
         </div>
     </div>
 
+    <!-- Barra de carga -->
+    <div id="loading-bar" class="loading-bar" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
     <script src="script.js"></script>
 
     <script>
         // Redirige al Módulo 1
         function irAlModulo1() {
-            window.location.href = 'modulo_asociar_palabras.html';
+            document.getElementById("loading-bar").style.display = "flex"; // Mostrar barra de carga
+            setTimeout(() => {
+                window.location.href = 'modulo_asociar_palabras.html';
+            }, 1000); // Simular un pequeño retraso para mostrar la barra de carga
         }
     </script>
 </body>

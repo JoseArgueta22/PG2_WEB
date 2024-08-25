@@ -68,18 +68,71 @@ h2 {
 }
 
 .module img {
-    width: 180px; /* Tamaño fijo para todas las imágenes */
-    height: 180px; /* Tamaño fijo para todas las imágenes */
+    width: 200px; /* Tamaño fijo para todas las imágenes */
+    height: 200px; /* Tamaño fijo para todas las imágenes */
     object-fit: cover; /* Ajuste de la imagen para que no se distorsione */
     display: block;
     margin-bottom: 10px; /* Espacio debajo de la imagen */
     border-radius: 5px; /* Bordes redondeados en imágenes */
 }
 
+
 /* Ajustar el tamaño específico para la imagen del lápiz */
 .module img[src*="lapiz.jpg"] {
     width: 200px; /* Tamaño ajustado para la imagen del lápiz */
     height: 200px; /* Tamaño ajustado para la imagen del lápiz */
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row; /* Cambia a fila para alinear horizontalmente */
+    align-items: center; /* Alinea verticalmente en el centro */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    margin: 20px 0; /* Espacio arriba y abajo del contenedor */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 400px; /* Tamaño máximo del contenedor de entrada */
+}
+
+.input-container input {
+    font-size: 16px;
+    padding: 15px; /* Aumentar el padding para más espacio */
+    border: 2px solid #DCDCDC;
+    border-radius: 5px;
+    width: 100%; /* Ajusta el ancho del input para ocupar el espacio restante */
+    max-width: 300px; /* Limita el ancho máximo del input */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+.input-container button {
+    background-color: #4CAF50; /* Verde más suave */
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* Espacio a la izquierda del botón para separarlo del campo de entrada */
+    transition: background-color 0.3s ease;
+}
+
+.input-container button:hover {
+    background-color: #45A049; /* Verde más oscuro al pasar el cursor */
+}
+
+button.return-button {
+    background-color: #FF6347; /* Rojo tomate */
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button.return-button:hover {
+    background-color: #FF4500; /* Rojo anaranjado más oscuro */
 }
 
 button {
@@ -119,9 +172,14 @@ button:hover {
     background-color: #FFC107;
 }
 
+/* Estilos para eliminar el título de resultados */
+#resultados-container h2 {
+    display: none; /* Ocultar el título de resultados */
+}
+
 footer {
     margin-top: 20px;
-    text-align: left;
+    text-align: center; /* Centrar el texto del pie de página */
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -133,7 +191,7 @@ footer {
 }
 
 footer .exit-button {
-    background-color: #FF6347;
+    background-color: #FF6347; /* Rojo tomate */
     color: white;
     font-size: 16px;
     border: none;
@@ -147,7 +205,7 @@ footer .exit-button {
 }
 
 footer .exit-button:hover {
-    background-color: #FF4500;
+    background-color: #FF4500; /* Rojo anaranjado más oscuro */
 }
 
 /* Agregar estilo para el mensaje emergente */
@@ -177,15 +235,13 @@ footer .exit-button:hover {
     color: #333;
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #FF6347;
-}
-
-.close:hover {
-    color: #FF4500;
+.loading-bar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centra la barra horizontalmente */
+    width: 100%;
+    background-color: #4CAF50; /* Verde más suave */
+    height: 5px;
+    z-index: 9999;
 }

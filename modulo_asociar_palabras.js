@@ -43,6 +43,13 @@ function cargarImagen() {
 // Función para verificar la respuesta
 function verificarRespuesta() {
     const respuestaUsuario = document.getElementById("respuesta").value.trim().toLowerCase();
+
+    // Verificar si la respuesta está vacía
+    if (respuestaUsuario === "") {
+        alert("Debe ingresar una respuesta antes de continuar.");
+        return; // Detener la ejecución si la respuesta está vacía
+    }
+
     const respuestaCorrecta = imagenesSeleccionadas[indiceImagenActual].respuesta.toLowerCase();
     
     respuestasUsuario.push({ correcta: respuestaCorrecta, usuario: respuestaUsuario });
