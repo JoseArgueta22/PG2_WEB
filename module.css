@@ -1,0 +1,113 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos específicos para los módulos */
+.module img {
+    width: 300px; /* Tamaño aumentado para la imagen */
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Estilos para la barra de progreso */
+#barra-progreso {
+    width: 80%;
+    height: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#barra-progreso::-webkit-progress-bar {
+    background-color: #e0e0e0;
+}
+
+#barra-progreso::-webkit-progress-value {
+    background-color: #4CAF50; /* Color verde */
+    border-radius: 10px;
+}
+
+#barra-progreso::-moz-progress-bar {
+    background-color: #4CAF50; /* Color verde */
+    border-radius: 10px;
+}
+/* Estilos para el contenedor de imágenes */
+#imagen-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Estilos para las imágenes dentro del contenedor */
+#imagen-container img {
+    width: 300px; /* Tamaño aumentado para la imagen */
+    height: 300px;
+    object-fit: cover;
+    margin: 50px;
+    border-radius: 8px;
+    border: 2px solid #DCDCDC;
+}
+
+/* Estilos para el contenedor de entrada */
+.input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Centrar el contenedor */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el campo de entrada */
+.input-container input {
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #DCDCDC;
+    outline: none;
+}
+
+/* Estilos para los botones */
+.input-container button, #boton-regresar button {
+    background-color: #4A90E2;
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.input-container button:hover, #boton-regresar button:hover {
+    background-color: #357ABD;
+}
+
+/* Estilos del botón 'Regresar' */
+button {
+    background-color: #4CAF50; /* Color verde */
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #388E3C; /* Verde más oscuro al pasar el cursor */
+}
+
+button:active {
+    background-color: #2E7D32; /* Verde aún más oscuro al hacer clic */
+}
+

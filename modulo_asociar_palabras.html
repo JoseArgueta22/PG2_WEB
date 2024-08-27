@@ -4,35 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Módulo Asociar Palabras con Imágenes</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* ... tus otros estilos ... */
-    </style>
+    <link rel="stylesheet" href="module.css">
 </head>
 <body onload="ocultarBarraDeCarga()">
-    <div id="barra-progreso-container">
-        <div id="barra-progreso-label">Progreso</div>
-        <progress id="barra-progreso" max="10" value="0"></progress>
+    <!-- Barra de Progreso Centrada -->
+    <div id="barra-progreso-container" style="text-align: center; margin-bottom: 20px;">
+        <div id="barra-progreso-label" style="margin-bottom: 10px;">Progreso</div>
+        <progress id="barra-progreso" max="10" value="0" style="width: 80%; height: 20px;"></progress>
     </div>
+
+    <!-- Contenedor de la Imagen Centrada y Agrandada -->
     <div id="imagen-container">
         <img id="imagen" src="" alt="Imagen">
     </div>
-    <div id="respuesta-container">
+
+    <!-- Contenedor de Respuesta y Botón de Verificación -->
+    <div id="respuesta-container" class="input-container">
         <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
         <button onclick="verificarRespuesta()">Verificar</button>
     </div>
-    <div id="mensaje-container">
+
+    <!-- Mensaje de Respuesta -->
+    <div id="mensaje-container" style="text-align: center; margin-bottom: 20px;">
         <p id="mensaje"></p>
     </div>
-    <div id="resultados-container">
+
+    <!-- Contenedor de Resultados, Oculto por Defecto -->
+    <div id="resultados-container" style="text-align: center; display: none;">
         <h2>Resultados</h2>
         <div id="resultados-texto" class="respuesta-container"></div>
         <button onclick="regresar()">Regresar</button>
     </div>
     
+    <!-- Sonidos -->
     <audio id="sonido-correcto" src="sounds/correcto.wav"></audio>
     <audio id="sonido-fin-modulo" src="sounds/grito.wav"></audio>
 
+    <!-- Scripts -->
     <script>
         function ocultarBarraDeCarga() {
             document.getElementById("loading-bar").style.display = "none"; // Ocultar la barra de carga
