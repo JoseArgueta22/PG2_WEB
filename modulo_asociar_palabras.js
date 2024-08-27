@@ -71,6 +71,18 @@ function verificarRespuesta() {
     setTimeout(cargarImagen, 1000); // Pasar a la siguiente imagen después de 1 segundo
 }
 
+// Función para cambiar la imagen a otra al azar
+function cambiarImagen() {
+    // Selecciona un nuevo índice de imagen aleatoriamente diferente al actual
+    let nuevoIndice = Math.floor(Math.random() * totalImagenes);
+    while (nuevoIndice === indiceImagenActual) {
+        nuevoIndice = Math.floor(Math.random() * totalImagenes);
+    }
+    indiceImagenActual = nuevoIndice;
+    cargarImagen();
+}
+
+
 // Función para mostrar los resultados al final del módulo
 function mostrarResultados() {
     document.getElementById("imagen-container").style.display = "none";
@@ -95,6 +107,28 @@ function reproducirSonido(id) {
         sonido.play();
     }
 }
+
+function mostrarMensajeBienvenida() {
+    document.getElementById("loading-bar").style.display = "flex"; // Mostrar barra de carga
+    setTimeout(() => {
+        document.getElementById("loading-bar").style.display = "none"; // Ocultar barra de carga
+        document.getElementById("popup").style.display = "block"; // Mostrar el mensaje emergente
+    }, 1000); // Simula un retraso para la barra de carga
+}
+
+function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function empezarModulo() {
+    cerrarPopup();
+    // Aquí puedes inicializar cualquier función o iniciar la actividad
+}
+
+function ocultarBarraDeCarga() {
+    document.getElementById("loading-bar").style.display = "none"; // Ocultar la barra de carga
+}
+
 
 // Función para regresar a la página principal
 function regresar() {

@@ -1,6 +1,74 @@
 /* Estilos generales */
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
+    background-color: #FFDAB9; /* Anaranjado claro (Peach Puff) */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el título "Progreso" */
+#barra-progreso-label {
+    color: #006eff; /* Naranja fuerte */
+    font-size: 18px;
+}
+
+/* Estilo para el título "¿No sabes qué es la imagen?" */
+#titulo-cambiar-imagen {
+    color: #4682B4; /* Azul acero */
+    font-size: 16px;
+    margin-bottom: 5px;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: -30px;
+}
+
+/* Estilos para el mensaje emergente */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 80%;
+}
+
+.popup-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    background-color: #FF4500; /* Naranja fuerte */
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    background-color: #FF6347; /* Naranja claro */
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
 }
 
 /* Estilos específicos para los módulos */

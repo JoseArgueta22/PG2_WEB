@@ -18,6 +18,12 @@
         <img id="imagen" src="" alt="Imagen">
     </div>
 
+   <!-- Título y Botón de Cambiar Imagen-->
+   <div style="text-align: right; margin-right: 20px; margin-top: -30px;">
+    <h3 id="titulo-cambiar-imagen">¿No sabes qué es la imagen?</h3>
+    <button onclick="cambiarImagen()">Cambiar</button>
+</div>
+
     <!-- Contenedor de Respuesta y Botón de Verificación -->
     <div id="respuesta-container" class="input-container">
         <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
@@ -40,13 +46,9 @@
     <audio id="sonido-correcto" src="sounds/correcto.wav"></audio>
     <audio id="sonido-fin-modulo" src="sounds/grito.wav"></audio>
 
-    <!-- Scripts -->
-    <script>
-        function ocultarBarraDeCarga() {
-            document.getElementById("loading-bar").style.display = "none"; // Ocultar la barra de carga
-        }
-    </script>
+  
     <script src="modulo_asociar_palabras.js"></script>
 </body>
 </html>
+
 
