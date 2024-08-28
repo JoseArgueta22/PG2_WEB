@@ -6,7 +6,26 @@
     <title>Módulo Asociar Palabras con Imágenes</title>
     <link rel="stylesheet" href="module.css">
 </head>
-<body onload="ocultarBarraDeCarga()">
+
+<body onload="mostrarMensajeBienvenida(); ocultarBarraDeCarga();">
+    <!-- Mensaje de Bienvenida -->
+    <div id="popup2" class="popup2" style="display:none;">
+        <div class="popup2-content">
+            <span class="close" onclick="cerrarPopup2()">&times;</span>
+            <p>¡Bienvenido al Módulo Asociar Palabras con Imágenes!</p>
+            <p>En este modulo podras encontrar imagenes conocidas como desconocidas</p>
+            <p>Recuerda que puedes ingresar la respuestas con ayuda de algun adulto </p>
+            <p>Si estas preparado dale al boton Empezar, diviertete y aprende</p>
+            <button onclick="empezarModulo()">Empezar</button>
+        </div>
+    </div>
+
+    <!-- Barra de carga -->
+    <div id="loading-bar" class="loading-bar" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
     <!-- Barra de Progreso Centrada -->
     <div id="barra-progreso-container" style="text-align: center; margin-bottom: 20px;">
         <div id="barra-progreso-label" style="margin-bottom: 10px;">Progreso</div>
@@ -18,11 +37,11 @@
         <img id="imagen" src="" alt="Imagen">
     </div>
 
-   <!-- Título y Botón de Cambiar Imagen-->
-   <div style="text-align: right; margin-right: 20px; margin-top: -30px;">
-    <h3 id="titulo-cambiar-imagen">¿No sabes qué es la imagen?</h3>
-    <button onclick="cambiarImagen()">Cambiar</button>
-</div>
+    <!-- Título y Botón de Cambiar Imagen-->
+    <div style="text-align: right; margin-right: 20px; margin-top: -30px;">
+        <h3 id="titulo-cambiar-imagen">¿No sabes qué es la imagen?</h3>
+        <button id="cambiar-imagen-btn" onclick="cambiarImagen()">Cambiar</button>
+    </div>
 
     <!-- Contenedor de Respuesta y Botón de Verificación -->
     <div id="respuesta-container" class="input-container">
@@ -40,15 +59,43 @@
         <h2>Resultados</h2>
         <div id="resultados-texto" class="respuesta-container"></div>
         <button onclick="regresar()">Regresar</button>
+        <button id="reiniciar-modulo-btn" onclick="reiniciarModulo()">Volver a jugar</button>
     </div>
     
     <!-- Sonidos -->
     <audio id="sonido-correcto" src="sounds/correcto.wav"></audio>
     <audio id="sonido-fin-modulo" src="sounds/grito.wav"></audio>
 
-  
+     <!-- Elemento para la cuenta regresiva -->
+<!-- Elemento para la cuenta regresiva -->
+<div id="cuenta-regresiva" style="display: none; font-size: 100px; color: yellow; text-align: center; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100;"></div>
+
     <script src="modulo_asociar_palabras.js"></script>
+
+    <script>
+        window.onload = function() {
+            mostrarMensajeBienvenida();
+            ocultarBarraDeCarga();
+        };
+
+        function ocultarBarraDeCarga() {
+            document.getElementById("loading-bar").style.display = "none"; // Ocultar la barra de carga
+        }
+
+        function mostrarMensajeBienvenida() {
+            document.getElementById("popup2").style.display = "flex"; // Mostrar el mensaje emergente
+        }
+
+        function cerrarPopup2() {
+            document.getElementById("popup2").style.display = "none";
+            iniciarModulo();
+        }
+
+        function empezarModulo() {
+            cerrarPopup2();
+            iniciarCuentaRegresiva();
+            //iniciarModulo(); // Iniciar el módulo después de cerrar el popup
+        }
+    </script>
 </body>
 </html>
-
-

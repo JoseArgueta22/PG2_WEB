@@ -17,7 +17,7 @@ let imagenesYRespuestas = [
 let respuestasCorrectas = 0;
 let indiceImagenActual = 0;
 let respuestasUsuario = [];
-let totalImagenes = 10;
+let totalImagenes = 5;
 let imagenesSeleccionadas = [];
 
 // Función para inicializar el módulo
@@ -46,7 +46,7 @@ function verificarRespuesta() {
 
     // Verificar si la respuesta está vacía
     if (respuestaUsuario === "") {
-        alert("Debe ingresar una respuesta antes de continuar.");
+        alert("Ingresa una respuesta para poder continuar :D.");
         return; // Detener la ejecución si la respuesta está vacía
     }
 
@@ -88,6 +88,8 @@ function mostrarResultados() {
     document.getElementById("imagen-container").style.display = "none";
     document.getElementById("respuesta-container").style.display = "none";
     document.getElementById("mensaje-container").style.display = "none";
+    document.getElementById("titulo-cambiar-imagen").style.display = "none"; 
+    document.getElementById("cambiar-imagen-btn").style.display = "none"; 
     
     const resultadosContainer = document.getElementById("resultados-container");
     resultadosContainer.style.display = "block";
@@ -108,26 +110,71 @@ function reproducirSonido(id) {
     }
 }
 
-function mostrarMensajeBienvenida() {
-    document.getElementById("loading-bar").style.display = "flex"; // Mostrar barra de carga
-    setTimeout(() => {
-        document.getElementById("loading-bar").style.display = "none"; // Ocultar barra de carga
-        document.getElementById("popup").style.display = "block"; // Mostrar el mensaje emergente
-    }, 1000); // Simula un retraso para la barra de carga
+function reiniciarModulo() {
+    respuestasCorrectas = 0;
+    indiceImagenActual = 0;
+    respuestasUsuario = [];
+    
+    // Seleccionar 5 imágenes al azar nuevamente
+    imagenesSeleccionadas = imagenesYRespuestas.sort(() => 0.5 - Math.random()).slice(0, totalImagenes);
+    
+    // Mostrar los contenedores relevantes y ocultar el de resultados
+    document.getElementById("imagen-container").style.display = "block";
+    document.getElementById("respuesta-container").style.display = "block";
+    document.getElementById("mensaje-container").style.display = "block";
+    document.getElementById("resultados-container").style.display = "none";
+
+    document.getElementById("titulo-cambiar-imagen").style.display = "block"; 
+    document.getElementById("cambiar-imagen-btn").style.display = "block";
+    
+ // Reiniciar la barra de progreso
+ document.getElementById("barra-progreso").value = 0;
+
+    // Cargar la primera imagen
+    cargarImagen();
 }
 
-function cerrarPopup() {
-    document.getElementById("popup").style.display = "none";
+function iniciarCuentaRegresiva() {
+    const cuentaRegresiva = document.getElementById("cuenta-regresiva");
+    const elementosParaOcultar = [
+        document.getElementById("barra-progreso-container"),
+        document.getElementById("imagen-container"),
+        document.getElementById("titulo-cambiar-imagen"),
+        document.getElementById("respuesta-container"),
+        document.getElementById("mensaje-container"),
+        document.getElementById("cambiar-imagen-btn")
+    ];
+    
+    let tiempo = 3; // Cuenta regresiva de 3 segundos
+    
+    cuentaRegresiva.style.display = "block";
+    cuentaRegresiva.style.fontSize = "72px";  // Tamaño de la fuente más grande
+    cuentaRegresiva.style.color = "yellow";   // Color amarillo
+    cuentaRegresiva.style.textAlign = "center";
+    cuentaRegresiva.style.position = "absolute";
+    cuentaRegresiva.style.top = "50%";
+    cuentaRegresiva.style.left = "50%";
+    cuentaRegresiva.style.transform = "translate(-50%, -50%)";
+
+    // Oculta los otros elementos
+    elementosParaOcultar.forEach(elemento => elemento.style.display = "none");
+
+    const intervalo = setInterval(() => {
+        cuentaRegresiva.textContent = tiempo;
+        tiempo--;
+
+        if (tiempo < 0) {
+            clearInterval(intervalo);
+            cuentaRegresiva.style.display = "none";
+            
+            // Muestra nuevamente los otros elementos
+            elementosParaOcultar.forEach(elemento => elemento.style.display = "block");
+
+            iniciarModulo(); // Iniciar el módulo después de la cuenta regresiva
+        }
+    }, 1000);
 }
 
-function empezarModulo() {
-    cerrarPopup();
-    // Aquí puedes inicializar cualquier función o iniciar la actividad
-}
-
-function ocultarBarraDeCarga() {
-    document.getElementById("loading-bar").style.display = "none"; // Ocultar la barra de carga
-}
 
 
 // Función para regresar a la página principal

@@ -16,9 +16,6 @@ function iniciarActividad(modulo) {
     console.log(`Iniciar actividad del ${modulo}`);
 }
 
-// script.js
-
-// script.js
 
 function mostrarInstrucciones(id) {
     const instrucciones = {
