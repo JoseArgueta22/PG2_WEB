@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida al Módulo 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="popup" id="popup2" style="display: flex;">
+            <div class="popup-content">
+                <h2>¡Bienvenido al Módulo 1!</h2>
+            <p>En este módulo podrás encontrar imágenes conocidas como desconocidas.</p>
+            <p>Recuerda que puedes ingresar las respuestas con ayuda de algún adulto.</p>
+            <p>Si estás preparado, dale al botón Empezar. ¡Diviértete y aprende!</p>
+                <button onclick="empezarModulo()">Empezar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de carga -->
+    <div id="loading-bar" class="loading-bar" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <script>
+        function empezarModulo() {
+            document.getElementById("loading-bar").style.display = "flex"; // Mostrar barra de carga
+            setTimeout(() => {
+                window.location.href = 'modulo_asociar_palabras.html'; // Redirige al Módulo 1
+            }, 1000); // Simular un pequeño retraso para mostrar la barra de carga
+        }
+    </script>
+</body>
+</html>

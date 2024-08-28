@@ -35,7 +35,7 @@ h2 {
     font-size: 1.5em;
     color: #D9534F; /* Rojo coral más suave */
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Resplandor sutil */
-    background: linear-gradient(90deg, #D9534F, #F5A623);
+    background: linear-gradient(90deg, #4f7fd9, #4323f5);
     -webkit-background-clip: text; /* Prefijo para navegadores WebKit */
     background-clip: text; /* Propiedad estándar */
     -webkit-text-fill-color: transparent; /* Prefijo para navegadores WebKit */

@@ -134,47 +134,6 @@ function reiniciarModulo() {
     cargarImagen();
 }
 
-function iniciarCuentaRegresiva() {
-    const cuentaRegresiva = document.getElementById("cuenta-regresiva");
-    const elementosParaOcultar = [
-        document.getElementById("barra-progreso-container"),
-        document.getElementById("imagen-container"),
-        document.getElementById("titulo-cambiar-imagen"),
-        document.getElementById("respuesta-container"),
-        document.getElementById("mensaje-container"),
-        document.getElementById("cambiar-imagen-btn")
-    ];
-    
-    let tiempo = 3; // Cuenta regresiva de 3 segundos
-    
-    cuentaRegresiva.style.display = "block";
-    cuentaRegresiva.style.fontSize = "72px";  // Tamaño de la fuente más grande
-    cuentaRegresiva.style.color = "yellow";   // Color amarillo
-    cuentaRegresiva.style.textAlign = "center";
-    cuentaRegresiva.style.position = "absolute";
-    cuentaRegresiva.style.top = "50%";
-    cuentaRegresiva.style.left = "50%";
-    cuentaRegresiva.style.transform = "translate(-50%, -50%)";
-
-    // Oculta los otros elementos
-    elementosParaOcultar.forEach(elemento => elemento.style.display = "none");
-
-    const intervalo = setInterval(() => {
-        cuentaRegresiva.textContent = tiempo;
-        tiempo--;
-
-        if (tiempo < 0) {
-            clearInterval(intervalo);
-            cuentaRegresiva.style.display = "none";
-            
-            // Muestra nuevamente los otros elementos
-            elementosParaOcultar.forEach(elemento => elemento.style.display = "block");
-
-            iniciarModulo(); // Iniciar el módulo después de la cuenta regresiva
-        }
-    }, 1000);
-}
-
 
 
 // Función para regresar a la página principal

@@ -6,20 +6,7 @@
     <title>Módulo Asociar Palabras con Imágenes</title>
     <link rel="stylesheet" href="module.css">
 </head>
-
-<body onload="mostrarMensajeBienvenida(); ocultarBarraDeCarga();">
-    <!-- Mensaje de Bienvenida -->
-    <div id="popup2" class="popup2" style="display:none;">
-        <div class="popup2-content">
-            <span class="close" onclick="cerrarPopup2()">&times;</span>
-            <p>¡Bienvenido al Módulo Asociar Palabras con Imágenes!</p>
-            <p>En este modulo podras encontrar imagenes conocidas como desconocidas</p>
-            <p>Recuerda que puedes ingresar la respuestas con ayuda de algun adulto </p>
-            <p>Si estas preparado dale al boton Empezar, diviertete y aprende</p>
-            <button onclick="empezarModulo()">Empezar</button>
-        </div>
-    </div>
-
+<body>
     <!-- Barra de carga -->
     <div id="loading-bar" class="loading-bar" style="display: none;">
         <div class="loading-spinner"></div>
@@ -66,36 +53,6 @@
     <audio id="sonido-correcto" src="sounds/correcto.wav"></audio>
     <audio id="sonido-fin-modulo" src="sounds/grito.wav"></audio>
 
-     <!-- Elemento para la cuenta regresiva -->
-<!-- Elemento para la cuenta regresiva -->
-<div id="cuenta-regresiva" style="display: none; font-size: 100px; color: yellow; text-align: center; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100;"></div>
-
     <script src="modulo_asociar_palabras.js"></script>
-
-    <script>
-        window.onload = function() {
-            mostrarMensajeBienvenida();
-            ocultarBarraDeCarga();
-        };
-
-        function ocultarBarraDeCarga() {
-            document.getElementById("loading-bar").style.display = "none"; // Ocultar la barra de carga
-        }
-
-        function mostrarMensajeBienvenida() {
-            document.getElementById("popup2").style.display = "flex"; // Mostrar el mensaje emergente
-        }
-
-        function cerrarPopup2() {
-            document.getElementById("popup2").style.display = "none";
-            iniciarModulo();
-        }
-
-        function empezarModulo() {
-            cerrarPopup2();
-            iniciarCuentaRegresiva();
-            //iniciarModulo(); // Iniciar el módulo después de cerrar el popup
-        }
-    </script>
 </body>
 </html>
