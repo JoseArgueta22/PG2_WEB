@@ -14,29 +14,44 @@ let imagenesYRespuestas = [
     // Añadir más imágenes y respuestas hasta tener 50
 ];
 
-let respuestasCorrectas = 0;
-let indiceImagenActual = 0;
-let respuestasUsuario = [];
-let totalImagenes = 5;
-let imagenesSeleccionadas = [];
+let estado = {
+    respuestasCorrectas: 0,
+    indiceImagenActual: 0,
+    respuestasUsuario: [],
+    totalImagenes: 5, // Fijo en 5 para mostrar exactamente 5 imágenes
+    imagenesSeleccionadas: [],
+    imagenesRespondidas: [] // Para almacenar las imágenes ya respondidas
+};
 
 // Función para inicializar el módulo
 function iniciarModulo() {
-    // Seleccionar 10 imágenes al azar
-    imagenesSeleccionadas = imagenesYRespuestas.sort(() => 0.5 - Math.random()).slice(0, totalImagenes);
+    // Seleccionar 'totalImagenes' imágenes al azar
+    estado.imagenesSeleccionadas = imagenesYRespuestas.sort(() => 0.5 - Math.random()).slice(0, estado.totalImagenes);
+    estado.imagenesRespondidas = [];
+    estado.indiceImagenActual = 0;
+    estado.respuestasUsuario = [];  // Reiniciar las respuestas del usuario
+    estado.respuestasCorrectas = 0; // Reiniciar el contador de respuestas correctas
+
+    document.getElementById("barra-progreso-container").style.display = "block";
+    document.getElementById("barra-progreso").value = 0;
+    document.getElementById("barra-progreso").max = estado.totalImagenes;
+
     cargarImagen();
 }
 
 // Función para cargar la imagen actual
 function cargarImagen() {
-    if (indiceImagenActual < totalImagenes) {
+    if (estado.indiceImagenActual < estado.imagenesSeleccionadas.length) {
         const imagen = document.getElementById("imagen");
-        imagen.src = imagenesSeleccionadas[indiceImagenActual].src;
-        document.getElementById("respuesta").value = "";
-        document.getElementById("mensaje").textContent = "";
+        const imagenSeleccionada = estado.imagenesSeleccionadas[estado.indiceImagenActual];
+
+        if (imagenSeleccionada) {
+            imagen.src = imagenSeleccionada.src;
+            document.getElementById("respuesta").value = "";
+            mostrarMensaje("", "");
+        }
     } else {
-        mostrarResultados();
-        reproducirSonido('sonido-fin-modulo');
+        finalizarModulo();
     }
 }
 
@@ -44,44 +59,67 @@ function cargarImagen() {
 function verificarRespuesta() {
     const respuestaUsuario = document.getElementById("respuesta").value.trim().toLowerCase();
 
-    // Verificar si la respuesta está vacía
     if (respuestaUsuario === "") {
         alert("Ingresa una respuesta para poder continuar :D.");
-        return; // Detener la ejecución si la respuesta está vacía
+        return;
     }
 
-    const respuestaCorrecta = imagenesSeleccionadas[indiceImagenActual].respuesta.toLowerCase();
-    
-    respuestasUsuario.push({ correcta: respuestaCorrecta, usuario: respuestaUsuario });
+    const imagenSeleccionada = estado.imagenesSeleccionadas[estado.indiceImagenActual];
+    if (!imagenSeleccionada) {
+        return;
+    }
+
+    const respuestaCorrecta = imagenSeleccionada.respuesta.toLowerCase();
+    estado.respuestasUsuario.push({ correcta: respuestaCorrecta, usuario: respuestaUsuario });
 
     if (respuestaUsuario === respuestaCorrecta) {
-        respuestasCorrectas++;
-        document.getElementById("mensaje").textContent = "Correcto +10";
-        document.getElementById("mensaje").style.color = "green";
+        estado.respuestasCorrectas++;
+        mostrarMensaje("Correcto +10", "green");
         reproducirSonido('sonido-correcto');
     } else {
-        document.getElementById("mensaje").textContent = "Incorrecto";
-        document.getElementById("mensaje").style.color = "red";
+        mostrarMensaje("Incorrecto", "red");
     }
 
-    // Actualizar la barra de progreso
-    indiceImagenActual++;
-    document.getElementById("barra-progreso").value = indiceImagenActual;
-    
-    setTimeout(cargarImagen, 1000); // Pasar a la siguiente imagen después de 1 segundo
+    // Actualizar barra de progreso después de verificar la respuesta
+    document.getElementById("barra-progreso").value = estado.respuestasUsuario.length;
+
+    // Eliminar la imagen actual de la lista de imágenes seleccionadas
+    estado.imagenesSeleccionadas.splice(estado.indiceImagenActual, 1);
+
+    // Verificar si todas las imágenes han sido respondidas
+    if (estado.imagenesSeleccionadas.length === 0) {
+        finalizarModulo();
+    } else {
+        // Avanzar al siguiente índice de imagen
+        estado.indiceImagenActual = Math.min(estado.indiceImagenActual, estado.imagenesSeleccionadas.length - 1);
+        
+        // Cargar la siguiente imagen después de un pequeño retraso
+        setTimeout(() => {
+            cargarImagen();
+        }, 1000);
+    }
 }
 
 // Función para cambiar la imagen a otra al azar
 function cambiarImagen() {
-    // Selecciona un nuevo índice de imagen aleatoriamente diferente al actual
-    let nuevoIndice = Math.floor(Math.random() * totalImagenes);
-    while (nuevoIndice === indiceImagenActual) {
-        nuevoIndice = Math.floor(Math.random() * totalImagenes);
+    if (estado.imagenesSeleccionadas.length > 1) {
+        let nuevoIndice = Math.floor(Math.random() * estado.imagenesSeleccionadas.length);
+        
+        while (nuevoIndice === estado.indiceImagenActual) {
+            nuevoIndice = Math.floor(Math.random() * estado.imagenesSeleccionadas.length);
+        }
+
+        estado.indiceImagenActual = nuevoIndice;
+        cargarImagen(); 
     }
-    indiceImagenActual = nuevoIndice;
-    cargarImagen();
 }
 
+// Función para mostrar el mensaje de correcto o incorrecto
+function mostrarMensaje(texto, color) {
+    const mensaje = document.getElementById("mensaje");
+    mensaje.textContent = texto;
+    mensaje.style.color = color;
+}
 
 // Función para mostrar los resultados al final del módulo
 function mostrarResultados() {
@@ -94,8 +132,8 @@ function mostrarResultados() {
     const resultadosContainer = document.getElementById("resultados-container");
     resultadosContainer.style.display = "block";
     
-    let resultadosTexto = `Correctas: ${respuestasCorrectas} / ${totalImagenes}\n\n`;
-    respuestasUsuario.forEach((respuesta, index) => {
+    let resultadosTexto = `Correctas: ${estado.respuestasCorrectas} / ${estado.totalImagenes}\n\n`;
+    estado.respuestasUsuario.forEach((respuesta, index) => {
         resultadosTexto += `<div class="respuesta">Imagen ${index + 1}: Correcta: ${respuesta.correcta}, Tu respuesta: ${respuesta.usuario}</div>`;
     });
     
@@ -110,31 +148,24 @@ function reproducirSonido(id) {
     }
 }
 
+// Función para reiniciar el módulo
 function reiniciarModulo() {
-    respuestasCorrectas = 0;
-    indiceImagenActual = 0;
-    respuestasUsuario = [];
-    
-    // Seleccionar 5 imágenes al azar nuevamente
-    imagenesSeleccionadas = imagenesYRespuestas.sort(() => 0.5 - Math.random()).slice(0, totalImagenes);
-    
-    // Mostrar los contenedores relevantes y ocultar el de resultados
+    document.getElementById("resultados-container").style.display = "none";
     document.getElementById("imagen-container").style.display = "block";
     document.getElementById("respuesta-container").style.display = "block";
     document.getElementById("mensaje-container").style.display = "block";
-    document.getElementById("resultados-container").style.display = "none";
-
     document.getElementById("titulo-cambiar-imagen").style.display = "block"; 
-    document.getElementById("cambiar-imagen-btn").style.display = "block";
+    document.getElementById("cambiar-imagen-btn").style.display = "block"; 
     
- // Reiniciar la barra de progreso
- document.getElementById("barra-progreso").value = 0;
-
-    // Cargar la primera imagen
-    cargarImagen();
+    iniciarModulo();
 }
 
-
+// Función para finalizar el módulo y ocultar la barra de progreso
+function finalizarModulo() {
+    document.getElementById("barra-progreso-container").style.display = 'none';
+    mostrarResultados();
+    reproducirSonido('sonido-fin-modulo');
+}
 
 // Función para regresar a la página principal
 function regresar() {
