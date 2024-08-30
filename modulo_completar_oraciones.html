@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2 - Completar Oraciones</title>
+    <link rel="stylesheet" href="module_dos.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Módulo 2 - Completar Oraciones</h1>
+        </header>
+        <main>
+            <!-- Aquí iría el contenido del Módulo 2 -->
+            <p>¡Bienvenido al Módulo 2!</p>
+        </main>
+        <footer>
+            <button onclick="regresar()">Regresar</button>
+        </footer>
+    </div>
+
+    <!-- Contenedor para el mensaje emergente -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="cerrarPopup()">&times;</span>
+            <p id="popup-text">Mensaje de prueba para el Módulo 2.</p>
+            <button onclick="cerrarPopup()">Aceptar</button>
+        </div>
+    </div>
+
+    <!-- Barra de carga -->
+    <div id="loading-bar" class="loading-bar">
+        <div class="loading-spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <script>
+        // Mostrar mensaje emergente al cargar
+        window.onload = function() {
+            document.getElementById("popup").style.display = "flex";
+        };
+
+        // Función para cerrar el mensaje emergente
+        function cerrarPopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        // Función para regresar a la página principal
+        function regresar() {
+            document.getElementById("loading-bar").style.display = "flex";
+            setTimeout(() => {
+                window.location.href = 'index.html'; // Regresa a la página principal
+            }, 1000); // Simular un pequeño retraso para mostrar la barra de carga
+        }
+    </script>
+</body>
+</html>

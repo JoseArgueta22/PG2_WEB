@@ -16,15 +16,15 @@
             <section class="modules">
                 <div class="module">
                     <img src="images/lapiz_me.png" alt="Módulo 1">
-                    <button onclick="irAlModulo1()">Módulo 1 Asociar palabras con imágenes</button>
+                    <button onclick="irAlModulo(1)">Módulo 1 Asociar palabras con imágenes</button>
                 </div>
                 <div class="module">
                     <img src="images/oracion.jpg" alt="Módulo 2">
-                    <button onclick="iniciarActividad('Módulo 2')">Módulo 2 Completar oraciones</button>
+                    <button onclick="irAlModulo(2)">Módulo 2 Completar oraciones</button>
                 </div>
                 <div class="module">
                     <img src="images/repetir.png" alt="Módulo 3">
-                    <button onclick="iniciarActividad('Módulo 3')">Módulo 3 Repetir palabras</button>
+                    <button onclick="irAlModulo(3)">Módulo 3 Repetir palabras</button>
                 </div>
             </section>
             <section class="instructions">
@@ -56,11 +56,12 @@
     <script src="script.js"></script>
 
     <script>
-        // Redirige al Módulo 1
-        function irAlModulo1() {
+        // Redirige al módulo seleccionado
+        function irAlModulo(modulo) {
             document.getElementById("loading-bar").style.display = "flex"; // Mostrar barra de carga
             setTimeout(() => {
-                window.location.href = 'bienvenida.html';
+                // Redirigir a la página de bienvenida con el parámetro del módulo
+                window.location.href = `bienvenida.html?modulo=${modulo}`;
             }, 1000); // Simular un pequeño retraso para mostrar la barra de carga
         }
     </script>
