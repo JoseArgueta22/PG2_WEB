@@ -1,7 +1,7 @@
 // Variables globales
 let imagenesYRespuestas = [
     { src: "images/manzana.png", respuesta: "manzana" },
-    { src: "images/banana.png", respuesta: "banana" },
+    { src: "images/banana.png", respuesta: "banano" },
     { src: "images/carro.png", respuesta: "carro" },
     { src: "images/sol.png", respuesta: "sol" },
     { src: "images/luna.png", respuesta: "luna" },
@@ -55,9 +55,16 @@ function cargarImagen() {
     }
 }
 
+// Función para normalizar texto eliminando tildes
+function eliminarTildes(texto) {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+// Función para verificar la respuesta
 // Función para verificar la respuesta
 function verificarRespuesta() {
-    const respuestaUsuario = document.getElementById("respuesta").value.trim().toLowerCase();
+    // Obtener la respuesta del usuario y normalizarla
+    const respuestaUsuario = eliminarTildes(document.getElementById("respuesta").value.trim().toLowerCase());
 
     if (respuestaUsuario === "") {
         alert("Ingresa una respuesta para poder continuar :D.");
@@ -69,10 +76,15 @@ function verificarRespuesta() {
         return;
     }
 
-    const respuestaCorrecta = imagenSeleccionada.respuesta.toLowerCase();
-    estado.respuestasUsuario.push({ correcta: respuestaCorrecta, usuario: respuestaUsuario });
+    // Normalizar las respuestas correctas
+    const respuestasCorrectas = eliminarTildes(imagenSeleccionada.respuesta.toLowerCase()).split("||");
 
-    if (respuestaUsuario === respuestaCorrecta) {
+    // Comprobar si la respuesta del usuario coincide con alguna de las respuestas correctas
+    const esRespuestaCorrecta = respuestasCorrectas.some(respuestaCorrecta => respuestaUsuario === eliminarTildes(respuestaCorrecta));
+
+    estado.respuestasUsuario.push({ correcta: respuestasCorrectas.join("||"), usuario: respuestaUsuario });
+
+    if (esRespuestaCorrecta) {
         estado.respuestasCorrectas++;
         mostrarMensaje("Correcto +10", "green");
         reproducirSonido('sonido-correcto');
