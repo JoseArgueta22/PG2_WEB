@@ -172,11 +172,42 @@ function reiniciarModulo() {
     iniciarModulo();
 }
 
+// Función para mostrar el mensaje final en el modal
+function mostrarMensajeFinal() {
+    const modal = document.getElementById("modal-final");
+
+    // Mostrar el modal
+    modal.style.display = "block";
+
+    // Obtener el elemento del botón de continuar aprendiendo
+    const continuarBtn = document.getElementById("listo-btn");
+    continuarBtn.onclick = function() {
+        modal.style.display = "none";
+        // Aquí no se realiza ninguna otra acción
+    }
+
+    // Obtener el elemento del botón de cerrar
+    const span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+        // Aquí no se realiza ninguna otra acción
+    }
+
+    // Cerrar el modal si se hace clic fuera del contenido
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+            // Aquí no se realiza ninguna otra acción
+        }
+    }
+}
+
 // Función para finalizar el módulo y ocultar la barra de progreso
 function finalizarModulo() {
     document.getElementById("barra-progreso-container").style.display = 'none';
     mostrarResultados();
     reproducirSonido('sonido-fin-modulo');
+    mostrarMensajeFinal(); // Mostrar el mensaje final
 }
 
 // Función para regresar a la página principal
