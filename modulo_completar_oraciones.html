@@ -11,8 +11,8 @@
     <div class="container">
         <!-- Barra de Progreso -->
         <div id="barra-progreso">
-            <label for="progreso">Progreso</label>
-            <progress id="progreso" value="0" max="5"></progress>
+            <div class="barra-progreso-titulo">Progreso</div>
+            <progress id="progreso" value="0" max="100"></progress> <!-- Barra de progreso inicia en 0 -->
         </div>
 
         <!-- Contenido Principal -->
@@ -25,13 +25,15 @@
             <!-- Contenedor de la Oración Incompleta -->
             <div id="oracion-container">
                 <p id="oracion-incompleta">El <span id="espacio-palabra">______</span> es muy rápido.</p>
+                <p id="mensaje-cambiar-oracion">¿No sabes qué palabra es?</p>
+                <button id="cambiar-oracion-btn" onclick="cambiarOracion()">Cambiar oración</button>
+                <p id="mensaje"></p> 
             </div>
+
             <!-- Contenedor de Opciones de Respuesta -->
             <div id="opciones-container">
                 <!-- Los botones se generarán dinámicamente desde JavaScript -->
             </div>
-            <!-- Mensaje de Respuesta -->
-            <p id="mensaje"></p>
         </main>
 
         <!-- Contenedor de Resultados, Oculto por Defecto -->
@@ -45,7 +47,7 @@
 
         <!-- Sonidos -->
         <audio id="sonido-correcto" src="sounds/correcto.wav"></audio>
-        <audio id="sonido-fin-modulo" src="sounds/fin_modulo.wav"></audio>
+        <audio id="sonido-fin-modulo" src="sounds/grito.wav"></audio>
     </div>
 
     <!-- Modal de Mensaje Final -->
