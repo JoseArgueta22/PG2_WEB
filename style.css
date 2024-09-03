@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #F5F5F5; /* Fondo gris claro para un diseño suave */
+    background-color: #39c92f; /* Fondo */
 }
 
 .container {
@@ -95,7 +95,7 @@ h2 {
 }
 
 .instructions button {
-    background-color: #FF6347; /* Color rojo tomate para los botones de instrucciones */
+    background-color: #a234c4; /* Color para los botones de instrucciones */
     color: #FFFFFF;
     font-size: 16px;
     border: none;
@@ -118,7 +118,7 @@ footer {
     border-top: 1px solid #DCDCDC; /* Línea superior más clara */
 }
 
-footer .exit-button {
+.exit-button {
     background-color: #D9534F; /* Color rojo coral para el botón de salir */
     color: #FFFFFF;
     font-size: 16px;
@@ -133,7 +133,7 @@ footer .exit-button {
     z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
 
-footer .exit-button:hover {
+.exit-button:hover {
     background-color: #C9302C; /* Rojo más oscuro al pasar el cursor */
 }
 
@@ -264,8 +264,6 @@ footer .exit-button:hover {
     max-width: 500px;
     text-align: center;
 }
-
-
 
 footer {
     text-align: center;

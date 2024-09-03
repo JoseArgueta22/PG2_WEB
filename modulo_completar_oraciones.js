@@ -139,7 +139,7 @@ function reiniciarModulo() {
 
 // Función para ir al Módulo 3
 function irAlModulo3() {
-    window.location.href = 'modulo_repetir.html';
+    window.location.href = 'bienvenida.html?modulo=3';
 }
 
 // Cargar la primera oración cuando la página se carga

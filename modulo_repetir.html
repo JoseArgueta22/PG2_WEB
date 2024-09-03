@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Repetir Palabras</title>
+    <link rel="stylesheet" href="module_tres.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Repite las Palabras</h1>
+            <h2>Haz clic en "Seguir" para ver la siguiente palabra.</h2>
+        </header>
+        <main>
+            <div id="palabra-container">
+                <p id="palabra">Palabra</p>
+            </div>
+            <button id="seguir-button" onclick="mostrarSiguientePalabra()">Seguir</button>
+            <div id="barra-progreso">
+                <progress id="progreso" value="0" max="10"></progress>
+                <label for="progreso">Progreso</label>
+            </div>
+            <div id="resultados" style="display: none;">
+                <p>¡Has completado el módulo!</p>
+                <button onclick="reiniciarModulo()">Volver a Jugar</button>
+                <button onclick="regresar()">Regresar al Inicio</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="modulo_repetir_palabras.js"></script>
+</body>
+</html>
