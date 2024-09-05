@@ -111,6 +111,35 @@ function cambiarOracion() {
     }
 }
 
+// Función para mostrar el modal
+function mostrarModalFinal() {
+    document.getElementById("modal-final").style.display = "block";
+
+    // Hacer clic en la "X" para cerrar el modal
+    document.getElementById("cerrar-modal-btn").onclick = function() {
+        cerrarModal();
+    };
+
+    // Hacer clic en el botón "Listo" para cerrar el modal
+    document.getElementById("listo-btn").onclick = function() {
+        cerrarModal();
+    };
+
+    // Cerrar modal si se hace clic fuera del contenido
+    window.onclick = function(event) {
+        let modal = document.getElementById("modal-final");
+        if (event.target == modal) {
+            cerrarModal();
+        }
+    };
+}
+
+// Función para cerrar el modal
+function cerrarModal() {
+    document.getElementById("modal-final").style.display = "none";
+}
+
+
 // Función para finalizar el módulo y mostrar los resultados
 function finalizarModulo() {
     document.getElementById("oracion-container").style.display = "none";
@@ -125,6 +154,9 @@ function finalizarModulo() {
     document.getElementById("resultados-texto").innerHTML = resultadosTexto;
     document.getElementById("resultados-container").style.display = "block";
     document.getElementById("sonido-fin-modulo").play();
+
+    // Mostrar el modal final
+    mostrarModalFinal();
 }
 
 // Función para regresar al inicio

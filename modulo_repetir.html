@@ -20,24 +20,25 @@
             <div id="palabra-container">
                 <p id="palabra">Palabra</p>
             </div>
-            <button id="seguir-button" onclick="mostrarSiguientePalabra()">Seguir</button>
-            <button id="escuchar-button" onclick="reproducirAudio()">Escuchar</button>
+            <button id="seguir-button">Seguir</button>
+            <button id="escuchar-button">Escuchar</button>
         </main>
         <div id="resultados" style="display: none;">
-            <button onclick="reiniciarModulo()">Volver a Jugar</button>
-            <button onclick="regresar()">Regresar al Inicio</button>
-            <button id="ir-al-modulo-4" onclick="irAlModulo4()">Palabras por letra</button>
+            <div id="palabras-mostradas"></div>
+            <button id="volver-jugar-btn">Volver a Jugar</button>
+            <button id="regresar-btn">Regresar al Inicio</button>
+            <button id="ir-al-modulo-4">Palabras por letra</button>
         </div>
     </div>
-<!-- Modal de Mensaje Final -->
-<div id="modal-final" class="modal">
-    <div class="modal-content">
-        <h2>¡Felicidades!</h2>
-        <p>Has completado el módulo de Repetir Palabras con éxito.</p>
-        <p>¡Recuerda que puedes seguir practicando para mejorar cada día más!</p>
-        <button id="listo-btn" onclick="cerrarModal('modal-final')">Listo</button>
+    <!-- Modal de Mensaje Final -->
+    <div id="modal-final" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>¡Felicidades!</h2>
+            <p>Has completado el módulo de Repetir Palabras con éxito.</p>
+            <p>¡Recuerda que puedes seguir practicando para mejorar cada día más!</p>
+            <button id="listo-btn">Listo</button>
+        </div>
     </div>
-</div>
 
     <script src="modulo_repetir_palabras.js"></script>
 </body>
