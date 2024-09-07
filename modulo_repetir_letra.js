@@ -84,7 +84,7 @@ function reiniciarModulo() {
 }
 
 function regresar() {
-    window.location.href = 'index.html'; 
+    window.location.href = 'index.php'; 
 }
 
 function actualizarProgreso() {
@@ -165,7 +165,7 @@ document.getElementById("volver-jugar-btn").onclick = function() {
 
 
 document.getElementById("regresar-btn").onclick = function() {
-    window.location.href = 'index.html';
+    window.location.href = 'index.php';
     regresar(); // Regresar a la pantalla principal
 };
 

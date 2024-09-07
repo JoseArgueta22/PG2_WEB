@@ -212,7 +212,7 @@ function finalizarModulo() {
 
 // Función para regresar a la página principal
 function regresar() {
-    window.location.href = 'index.html';
+    window.location.href = 'index.php';
 }
 
 // Iniciar el módulo cuando la página se carga

@@ -161,7 +161,7 @@ function finalizarModulo() {
 
 // Función para regresar al inicio
 function regresarAlInicio() {
-    window.location.href = 'index.html';
+    window.location.href = 'index.php';
 }
 
 // Función para reiniciar el módulo

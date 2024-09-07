@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['nombre_usuario'])) {
+    header("Location: login_register.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,6 +19,7 @@
         <header>
             <h1>¡Bienvenido a Tu Aventura de Aprendizaje!</h1>
             <h2>Plataforma Web para la estimulación y aprendizaje de palabras</h2>
+            <p id="usuario">Hola, <?php echo htmlspecialchars($_SESSION['nombre']); ?></p>
         </header>
         <main>
             <section class="modules">
@@ -33,7 +42,7 @@
                 <button onclick="mostrarInstrucciones('instrucciones3')">Instrucciones Módulo 3</button>
             </section>
         </main>
-            <button class="exit-button" onclick="salir()">Salir</button>
+        <button class="exit-button" onclick="salir()">Salir</button>
     </div>
 
     <!-- Contenedor para el mensaje emergente -->
@@ -60,6 +69,10 @@
                 // Redirigir a la página de bienvenida con el parámetro del módulo
                 window.location.href = `bienvenida.html?modulo=${modulo}`;
             }, 1000); // Simular un pequeño retraso para mostrar la barra de carga
+        }
+
+        function salir() {
+            window.location.href = "logout.php";
         }
     </script>
 </body>
