@@ -16,8 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $row['contrasena'])) {
             $_SESSION['nombre_usuario'] = $row['nombre_usuario'];
             $_SESSION['nombre'] = $row['nombre'];
-            header("Location: index.php"); // Redirigir a la página principal
-            exit();
+            echo "success";  // Aquí se envía un indicador de éxito
         } else {
             echo "Contraseña incorrecta.";
         }

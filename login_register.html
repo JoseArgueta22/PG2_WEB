@@ -5,36 +5,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión / Registrarse</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="login-container">
         <h1>Bienvenido a la Plataforma</h1>
 
-        <!-- Formulario de Inicio de Sesión -->
-        <div class="login-form">
+        <!-- Contenedor del formulario de Inicio de Sesión -->
+        <div class="login-box">
+            <div class="image-container">
+                <img src="images/portada.jpg" alt="Imagen de bienvenida" class="login-image">
+            </div>
+
             <h2>Iniciar Sesión</h2>
-            <form action="login.php" method="POST">
+            <form id="login-form">
                 <input type="text" name="username" placeholder="Nombre de usuario" required>
                 <input type="password" name="password" placeholder="Contraseña" required>
                 <button type="submit">Iniciar Sesión</button>
             </form>
+
+            <!-- Botón para abrir el modal de registro -->
+            <div class="register-link">
+                <button class="register-button" onclick="openModal()">Registrarse</button>
+            </div>
         </div>
+    </div>
 
-        <hr>
-
-        <!-- Formulario de Registro -->
-        <div class="register-form">
+    <!-- Modal de Registro -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
             <h2>Registrarse</h2>
-            <form action="register.php" method="POST">
+            <form id="register-form">
                 <input type="text" name="nombre" placeholder="Nombre" required>
                 <input type="text" name="apellido" placeholder="Apellido" required>
                 <input type="text" name="username" placeholder="Nombre de usuario" required>
                 <input type="password" name="password" placeholder="Contraseña" required>
-                <input type="number" name="edad" placeholder="Edad" required>
+                <input type="number" name="edad" placeholder="Edad" required min="1" max="120">
                 <button type="submit">Registrarse</button>
             </form>
         </div>
     </div>
+
+    <!-- Mensaje emergente -->
+    <div id="alert-box" class="alert-box">
+        <p id="alert-message"></p>
+        <button onclick="closeAlert()">Cerrar</button>
+    </div>
+
+    <script>
+        // Funciones para abrir y cerrar el modal
+        function openModal() {
+            document.getElementById('register-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('register-modal').style.display = 'none';
+        }
+
+        // Cerrar el modal si se hace clic fuera del contenido del modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('register-modal')) {
+                closeModal();
+            }
+        }
+
+        // Función para mostrar alertas
+        function showAlert(message) {
+            document.getElementById('alert-message').innerText = message;
+            document.getElementById('alert-box').style.display = 'block';
+        }
+
+        function closeAlert() {
+            document.getElementById('alert-box').style.display = 'none';
+        }
+
+        // Manejar el formulario de registro con AJAX
+        $(document).ready(function() {
+            $('#register-form').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "register.php",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        showAlert(response);
+                    }
+                });
+            });
+
+// Manejar el formulario de login con AJAX
+$('#login-form').on('submit', function(e) {
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "login.php",
+        data: $(this).serialize(),
+        success: function(response) {
+            if (response.trim() === "success") {
+                // Redirigir al index.php si el login es exitoso
+                window.location.href = "index.php";
+            } else {
+                // Mostrar el mensaje de error si no es exitoso
+                showAlert(response);
+            }
+        }
+    });
+});
+
+        });
+    </script>
 </body>
 </html>

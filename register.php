@@ -20,10 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = "INSERT INTO usuarios (nombre, apellido, nombre_usuario, contrasena, edad) VALUES ('$nombre', '$apellido', '$username', '$password', '$edad')";
         if (mysqli_query($conn, $query)) {
             echo "Registro exitoso. Ahora puedes iniciar sesión.";
-            header("Location: login_register.html");
-            exit();
         } else {
-            echo "Error: " . mysqli_error($conn);
+            echo "Error en el registro. Inténtalo nuevamente.";
         }
     }
 }
