@@ -11,7 +11,6 @@
 <body>
     <div class="login-container">
         <h1>Bienvenido a la Plataforma</h1>
-
         <!-- Contenedor del formulario de Inicio de Sesión -->
         <div class="login-box">
             <div class="image-container">
@@ -21,7 +20,10 @@
             <h2>Iniciar Sesión</h2>
             <form id="login-form">
                 <input type="text" name="username" placeholder="Nombre de usuario" required>
-                <input type="password" name="password" placeholder="Contraseña" required>
+                <div class="password-container">
+                    <input type="password" name="password" id="login-password" placeholder="Contraseña" required>
+                    <span class="eye-icon" id="login-password-eye" onclick="togglePassword('login-password')">👁️</span>
+                </div>
                 <button type="submit">Iniciar Sesión</button>
             </form>
 
@@ -29,11 +31,16 @@
             <div class="register-link">
                 <button class="register-button" onclick="openModal()">Registrarse</button>
             </div>
+
+            <!-- Enlace para abrir el modal de restablecer contraseña -->
+            <div class="recover-link">
+                <a href="#" class="recover-text" onclick="openRecoverModal()">¿Olvidaste tu contraseña?</a>
+            </div>
         </div>
     </div>
 
     <!-- Modal de Registro -->
-    <div id="register-modal" class="modal">
+    <div id="register-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Registrarse</h2>
@@ -41,80 +48,51 @@
                 <input type="text" name="nombre" placeholder="Nombre" required>
                 <input type="text" name="apellido" placeholder="Apellido" required>
                 <input type="text" name="username" placeholder="Nombre de usuario" required>
-                <input type="password" name="password" placeholder="Contraseña" required>
+                <div class="password-container">
+                    <input type="password" name="password" id="register-password" placeholder="Contraseña" required>
+                    <span class="eye-icon" id="register-password-eye" onclick="togglePassword('register-password')">👁️</span>
+                </div>
                 <input type="number" name="edad" placeholder="Edad" required min="1" max="120">
+
+                <!-- Pregunta de seguridad -->
+                <label for="pregunta_seguridad">Pregunta de Seguridad</label>
+                <select name="pregunta_seguridad" required>
+                    <option value="color_favorito">¿Cuál es tu color favorito?</option>
+                    <option value="mascota_infancia">¿Cuál fue el nombre de tu primera mascota?</option>
+                    <option value="ciudad_nacimiento">¿En qué ciudad naciste?</option>
+                </select>
+
+                <!-- Respuesta de seguridad -->
+                <input type="text" name="respuesta_seguridad" placeholder="Respuesta a la pregunta de seguridad" required>
+
                 <button type="submit">Registrarse</button>
             </form>
         </div>
     </div>
 
+    <!-- Modal de Restablecer Contraseña -->
+    <div id="recover-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeRecoverModal()">&times;</span>
+            <h2>Restablecer Contraseña</h2>
+            <form id="recuperar-form">
+                <input type="text" name="username" placeholder="Nombre de usuario" required>
+                <input type="text" name="respuesta_seguridad" placeholder="Respuesta a la pregunta de seguridad" required>
+                <div class="password-container">
+                    <input type="password" name="nueva_contrasena" id="recover-password" placeholder="Nueva contraseña" required>
+                    <span class="eye-icon" id="recover-password-eye" onclick="togglePassword('recover-password')">👁️</span>
+                </div>
+                <button type="submit">Restablecer Contraseña</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Mensaje emergente -->
-    <div id="alert-box" class="alert-box">
+    <div id="alert-box" class="alert-box" style="display: none;">
         <p id="alert-message"></p>
         <button onclick="closeAlert()">Cerrar</button>
     </div>
 
-    <script>
-        // Funciones para abrir y cerrar el modal
-        function openModal() {
-            document.getElementById('register-modal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('register-modal').style.display = 'none';
-        }
-
-        // Cerrar el modal si se hace clic fuera del contenido del modal
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('register-modal')) {
-                closeModal();
-            }
-        }
-
-        // Función para mostrar alertas
-        function showAlert(message) {
-            document.getElementById('alert-message').innerText = message;
-            document.getElementById('alert-box').style.display = 'block';
-        }
-
-        function closeAlert() {
-            document.getElementById('alert-box').style.display = 'none';
-        }
-
-        // Manejar el formulario de registro con AJAX
-        $(document).ready(function() {
-            $('#register-form').on('submit', function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "register.php",
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        showAlert(response);
-                    }
-                });
-            });
-
-// Manejar el formulario de login con AJAX
-$('#login-form').on('submit', function(e) {
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: "login.php",
-        data: $(this).serialize(),
-        success: function(response) {
-            if (response.trim() === "success") {
-                // Redirigir al index.php si el login es exitoso
-                window.location.href = "index.php";
-            } else {
-                // Mostrar el mensaje de error si no es exitoso
-                showAlert(response);
-            }
-        }
-    });
-});
-
-        });
-    </script>
+    <script src="login.js"></script>
 </body>
 </html>

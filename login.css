@@ -1,146 +1,200 @@
-/* Estilos generales */
+/* Estilos básicos */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #333;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+/* Contenedor principal */
+.login-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    padding: 20px;
 }
 
-.login-container {
-    text-align: center;
-    margin: 20px;
-}
-
+/* Título de bienvenida */
 h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    margin: 0; /* Ajustado para eliminar el margen negativo */
+    padding-bottom: 10px; /* Ajuste del espacio debajo del título */
+}
+
+/* Contenedor del formulario de inicio de sesión */
+.login-box-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .login-box {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
+    padding: 20px;
+    width: 300px;
     text-align: center;
-}
-
-.login-box h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.image-container {
-    margin-bottom: 20px;
 }
 
 .login-image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 5px solid #333;
+    width: 150px; /* Ajusta el tamaño de la imagen aquí */
+    height: 150px; /* Ajusta el tamaño de la imagen aquí */
     border-radius: 50%;
+    border: 4px solid #007bff;
+    margin-bottom: 15px;
 }
 
-input[type="text"], input[type="password"], input[type="number"] {
-    width: 80%; /* Acortar el ancho a 80% */
+/* Estilo del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
     padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
     border: 1px solid #ddd;
-    font-size: 1rem;
+    border-radius: 4px;
+    width: calc(100% - 20px); /* Ajustado para el ícono del ojo */
+    margin: 0 auto;
 }
 
-button[type="submit"], .register-button {
-    width: 80%; /* Igual ancho que los inputs */
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
-button[type="submit"]:hover, .register-button:hover {
-    background-color: #0056b3;
-}
-
-/* Modal de registro */
-.modal {
-    display: none; /* Ocultar por defecto */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
-    justify-content: center;
+/* Contenedor de contraseña */
+.password-container {
+    position: relative;
+    display: flex;
     align-items: center;
 }
 
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Botones */
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Enlaces */
+.recover-link a,
+.register-link button {
+    color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.recover-link a:hover {
+    text-decoration: underline;
+}
+
+/* Texto del botón de registro */
+.register-link button {
+    background: none;
+    border: none;
+    color: #007bff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.register-link button:hover {
+    text-decoration: underline;
+}
+
+/* Modales */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
 .modal-content {
-    background-color: white;
+    background: #fff;
+    border-radius: 8px;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 400px;
+    width: 400px;
     position: relative;
-    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal-content h2 {
-    margin-bottom: 20px;
+    text-align: center; 
+    margin-top: 0;
 }
 
 .close {
     position: absolute;
     top: 10px;
-    right: 15px;
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
+    right: 10px;
+    font-size: 20px;
     cursor: pointer;
+    color: #333; /* Asegúrate de que el color del icono sea visible */
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Mensaje emergente */
+/* Estilos para el mensaje de alerta */
 .alert-box {
-    display: none;
     position: fixed;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 2;
+    background: #ffffff;
+    color: #ffffff;
+    padding: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    z-index: 1000; /* Asegura que el mensaje de alerta esté encima de otros elementos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
-.alert-box p {
-    margin-bottom: 10px;
+.alert-box button {
+    margin-top: 10px;
 }
 
-.alert-box button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+.alert-box button:hover {
+    background-color: #0056b3;
 }
