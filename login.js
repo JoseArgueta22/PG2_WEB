@@ -5,55 +5,80 @@ function togglePassword(inputId) {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        eyeIcon.textContent = "👁️"; // Ojo abierto
+        eyeIcon.textContent = "👁️"; 
     } else {
         passwordInput.type = "password";
-        eyeIcon.textContent = "👁️"; // Ojo cerrado
+        eyeIcon.textContent = "👁️"; 
     }
 }
 
+// Función para mostrar mensajes de alerta
 function showAlert(message) {
-    const alertBox = document.createElement('div');
-    alertBox.className = 'alert-box'; // Asegúrate de que esta clase esté en tu CSS
-    alertBox.innerHTML = `
-        <p>${message}</p>
-        <button onclick="this.parentElement.remove()">OK</button>
-    `;
-    document.body.appendChild(alertBox);
+    const alertBox = document.getElementById('alert-box');
+    const alertMessage = document.getElementById('alert-message');
+    alertMessage.textContent = message;
+    alertBox.style.display = 'block';
+}
 
-    // Opcional: elimina el mensaje después de algunos segundos
-    setTimeout(() => {
-        alertBox.remove();
-    }, 5000); // 5000 ms = 5 segundos
+// Función para cerrar el mensaje de alerta
+function closeAlert() {
+    const alertBox = document.getElementById('alert-box');
+    alertBox.style.display = 'none';
 }
 
 // Función para abrir el modal de registro
 function openModal() {
-    document.getElementById('register-modal').style.display = 'flex'; // Usar 'flex' para centrar el modal
+    document.getElementById('register-modal').style.display = 'flex'; 
 }
 
 // Función para cerrar el modal de registro
 function closeModal() {
     document.getElementById('register-modal').style.display = 'none';
-    document.getElementById('register-form').reset(); // Limpiar los campos del formulario
+    document.getElementById('register-form').reset(); 
 }
 
 // Función para abrir el modal de recuperación de contraseña
 function openRecoverModal() {
-    document.getElementById('recover-modal').style.display = 'flex'; // Usar 'flex' para centrar el modal
+    document.getElementById('recover-modal').style.display = 'flex'; 
 }
 
 // Función para cerrar el modal de recuperación de contraseña
 function closeRecoverModal() {
     document.getElementById('recover-modal').style.display = 'none';
-    document.getElementById('recuperar-form').reset(); // Limpiar los campos del formulario
+    document.getElementById('recuperar-form').reset(); 
 }
 
-// Función para cerrar el mensaje de alerta
-function closeAlert() {
-    document.getElementById('alert-box').style.display = 'none';
+// Función para abrir el modal de recuperación de nombre de usuario
+function openRecoverUsernameModal() {
+    document.getElementById('recover-username-modal').style.display = 'flex'; 
 }
 
+function closeRecoverUsernameModal() {
+    document.getElementById('recover-username-modal').style.display = 'none';
+    document.getElementById('recover-username-form').reset(); 
+}
+
+// Unificar el evento de clic fuera de los modales
+window.onclick = function(event) {
+    const registerModal = document.getElementById('register-modal');
+    const recoverModal = document.getElementById('recover-modal');
+    const recoverUsernameModal = document.getElementById('recover-username-modal');
+
+    // Cerrar el modal de registro si se hace clic fuera de él
+    if (event.target == registerModal) {
+        closeModal();
+    }
+
+    // Cerrar el modal de restablecimiento de contraseña si se hace clic fuera de él
+    if (event.target == recoverModal) {
+        closeRecoverModal();
+    }
+
+    // Cerrar el modal de recuperación de nombre de usuario si se hace clic fuera de él
+    if (event.target == recoverUsernameModal) {
+        closeRecoverUsernameModal();
+    }
+}
 // Manejar el formulario de registro con AJAX
 $(document).ready(function() {
     $('#register-form').on('submit', function(e) {
@@ -66,9 +91,9 @@ $(document).ready(function() {
                 showAlert(response);
                 if (response.trim() === "Registro exitoso") {
                     setTimeout(function() {
-                        closeModal(); // Cerrar el modal y limpiar el formulario
-                        closeAlert(); // Cerrar el mensaje de alerta
-                    }, 1000); // Añadir un pequeño retraso para que el usuario pueda ver el mensaje
+                        closeModal(); 
+                        closeAlert(); 
+                    }, 1000);
                 }
             }
         });
@@ -85,10 +110,24 @@ $(document).ready(function() {
                 showAlert(response);
                 if (response.trim() === "Contraseña restablecida exitosamente") {
                     setTimeout(function() {
-                        closeRecoverModal(); // Cerrar el modal y limpiar el formulario
-                        closeAlert(); // Cerrar el mensaje de alerta
-                    }, 1000); // Añadir un pequeño retraso para que el usuario pueda ver el mensaje
+                        closeRecoverModal(); 
+                        closeAlert(); 
+                    }, 1000); 
                 }
+            }
+        });
+    });
+
+    // Manejar el formulario de recuperación de nombre de usuario con AJAX
+    $('#recover-username-form').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "recuperar_usuario.php", 
+            data: $(this).serialize(),
+            success: function(response) {
+                showAlert(response); // Mostrar el mensaje de alerta con la respuesta
+                // No se cierra automáticamente el modal ni el mensaje
             }
         });
     });

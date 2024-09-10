@@ -11,6 +11,12 @@ h1, h2 {
     color: #333;
 }
 
+/* Título de bienvenida */
+h1 {
+    margin: 0; /* Ajustado para eliminar el margen negativo */
+    padding-bottom: 10px; /* Ajuste del espacio debajo del título */
+}
+
 /* Contenedor principal */
 .login-container {
     display: flex;
@@ -19,12 +25,6 @@ h1, h2 {
     align-items: center;
     height: 100vh;
     padding: 20px;
-}
-
-/* Título de bienvenida */
-h1 {
-    margin: 0; /* Ajustado para eliminar el margen negativo */
-    padding-bottom: 10px; /* Ajuste del espacio debajo del título */
 }
 
 /* Contenedor del formulario de inicio de sesión */
@@ -45,6 +45,12 @@ h1 {
     text-align: center;
 }
 
+/* Ajuste de espacio para el contenedor y el título */
+.login-container {
+    padding-top: 40px; /* Ajusta este valor para subir más el contenedor */
+}
+
+/* Ajuste de la imagen */
 .login-image {
     width: 150px; /* Ajusta el tamaño de la imagen aquí */
     height: 150px; /* Ajusta el tamaño de la imagen aquí */
@@ -111,14 +117,23 @@ button:hover {
 
 /* Enlaces */
 .recover-link a,
-.register-link button {
-    color: #007bff;
+.recover-username-link a {
+    color: #007bff; /* Asegúrate de que ambos enlaces tengan el mismo color */
     text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Estilo para el enlace "Olvidaste tu contraseña?" */
+.recover-link {
+    margin-bottom: 10px; /* Espacio entre "Olvidaste tu contraseña?" y el siguiente enlace */
 }
 
 .recover-link a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para el enlace "¿Olvidaste tu nombre de usuario?" */
+.recover-username-link a:hover {
     text-decoration: underline;
 }
 
@@ -179,7 +194,7 @@ button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     background: #ffffff;
-    color: #ffffff;
+    color: #000000;
     padding: 15px;
     border: 1px solid #f5c6cb;
     border-radius: 5px;
