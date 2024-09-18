@@ -13,12 +13,14 @@ let oraciones = [
 
 let estado = {
     respuestasCorrectas: 0,
+    respuestasIncorrectas: 0, // Contador de respuestas incorrectas
     respuestasUsuario: [],
     indiceActual: 0,
     oracionesSeleccionadas: [],
     totalOraciones: 5,
     oracionActual: null,
-    oracionesRespondidas: []
+    oracionesRespondidas: [],
+    puntos: 0 // Acumulador de puntos
 };
 
 // Función para inicializar el módulo
@@ -26,8 +28,10 @@ function iniciarModulo() {
     estado.oracionesSeleccionadas = oraciones.sort(() => 0.5 - Math.random()).slice(0, estado.totalOraciones);
     estado.indiceActual = 0;
     estado.respuestasCorrectas = 0;
+    estado.respuestasIncorrectas = 0; // Reiniciar el contador de respuestas incorrectas
     estado.respuestasUsuario = [];
     estado.oracionesRespondidas = [];
+    estado.puntos = 0; // Reiniciar los puntos
     
     document.getElementById("progreso").value = 0;
     document.getElementById("progreso").max = estado.totalOraciones;
@@ -77,11 +81,14 @@ function seleccionarOpcion(opcionSeleccionada) {
 
     if (opcionSeleccionada === correcta) {
         estado.respuestasCorrectas++;
-        mensaje.textContent = "¡Correcto!";
+        estado.puntos += 10; // Sumar 10 puntos por respuesta correcta
+        mensaje.textContent = "¡Correcto! +10";
         mensaje.style.color = "green";
         document.getElementById("sonido-correcto").play();
     } else {
-        mensaje.textContent = "Incorrecto.";
+        estado.respuestasIncorrectas++;
+        estado.puntos -= 5; // Restar 5 puntos por respuesta incorrecta
+        mensaje.textContent = "Incorrecto -5.";
         mensaje.style.color = "red";
     }
 
@@ -139,13 +146,12 @@ function cerrarModal() {
     document.getElementById("modal-final").style.display = "none";
 }
 
-
 // Función para finalizar el módulo y mostrar los resultados
 function finalizarModulo() {
     document.getElementById("oracion-container").style.display = "none";
     document.getElementById("opciones-container").style.display = "none";
 
-    let resultadosTexto = `Has completado el módulo. Respuestas correctas: ${estado.respuestasCorrectas} de ${estado.totalOraciones}.<br><br>`;
+    let resultadosTexto = `Has completado el módulo. Respuestas correctas: ${estado.respuestasCorrectas} de ${estado.totalOraciones}.<br>Puntos Totales: ${estado.puntos}<br><br>`;
     
     estado.respuestasUsuario.forEach((respuesta, index) => {
         resultadosTexto += `${index + 1}. Oración: ${respuesta.oracion}<br>Tu respuesta: ${respuesta.respuestaUsuario}<br>Respuesta correcta: ${respuesta.respuestaCorrecta}<br><br>`;
@@ -157,6 +163,33 @@ function finalizarModulo() {
 
     // Mostrar el modal final
     mostrarModalFinal();
+    enviarPuntosAlServidor(); // Enviar los puntos al servidor
+}
+
+// Función para enviar los puntos al servidor
+function enviarPuntosAlServidor() {
+    const puntos = estado.puntos;
+    const modulo = 2; // Número de módulo
+
+    fetch('guardar_puntos.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            puntos: puntos,
+            modulo: modulo
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error('Error al guardar los puntos:', data.error);
+        } else {
+            console.log('Puntos guardados con éxito:', data.message);
+        }
+    })
+    .catch(error => console.error('Error al enviar los puntos:', error));
 }
 
 // Función para regresar al inicio

@@ -4,6 +4,23 @@ if (!isset($_SESSION['nombre_usuario'])) {
     header("Location: login_register.html");
     exit();
 }
+// Conexión a la base de datos
+include 'db_connection.php'; 
+
+// Obtener la puntuación acumulada del usuario
+$nombre_usuario = $_SESSION['nombre_usuario'];
+$puntuacion_total = 0;
+
+$sql = "SELECT puntuacion_total FROM puntuaciones_totales WHERE nombre_usuario = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $nombre_usuario);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($row = $result->fetch_assoc()) {
+    $puntuacion_total = $row['puntuacion_total'];
+}
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +37,7 @@ if (!isset($_SESSION['nombre_usuario'])) {
             <h1>¡Bienvenido a Tu Aventura de Aprendizaje!</h1>
             <h2>Plataforma Web para la estimulación y aprendizaje de palabras</h2>
             <p id="usuario">Hola, <?php echo htmlspecialchars($_SESSION['nombre']); ?></p>
+            <p id="puntos">Puntuación acumulada: <?php echo $puntuacion_total; ?> puntos</p>
         </header>
         <main>
             <section class="modules">

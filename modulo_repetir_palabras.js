@@ -72,7 +72,6 @@ function reproducirAudio() {
     speechSynthesis.speak(utterance);
 }
 
-// Función para mostrar los resultados al final
 function mostrarResultados() {
     document.getElementById("palabra-container").style.display = "none";
     document.getElementById("seguir-button").style.display = "none";
@@ -89,12 +88,47 @@ function mostrarResultados() {
         resultadosDiv.appendChild(palabraElement);
     });
 
+    // Comprobar si el elemento existe antes de modificarlo
+    let puntosObtenidos = document.getElementById("puntos-obtenidos");
+    if (puntosObtenidos) {
+        puntosObtenidos.textContent = "¡Has ganado 25 puntos!";
+    } else {
+        console.error('El elemento #puntos-obtenidos no se encontró en el DOM.');
+    }
+
     // Mostrar los botones para volver a jugar o regresar
     document.getElementById("volver-jugar-btn").style.display = "inline-block";
     document.getElementById("regresar-btn").style.display = "inline-block";
 }
 
-// Función para mostrar el modal final
+
+function enviarPuntos(puntos) {
+    fetch('guardar_puntos.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            puntos: puntos,
+            modulo: 3
+        }),
+    })
+    .then(response => response.text()) 
+    .then(text => {
+        console.log('Respuesta del servidor:', text); 
+        try {
+            let data = JSON.parse(text); 
+            console.log('Respuesta JSON del servidor:', data);
+        } catch (error) {
+            console.error('Error al parsear JSON:', error);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+/// Función para mostrar el modal final
 function mostrarModalFinal() {
     let modal = document.getElementById("modal-final");
     let listoBtn = document.getElementById("listo-btn");
@@ -104,7 +138,12 @@ function mostrarModalFinal() {
     // Cierra el modal cuando se hace clic en el botón "Listo"
     listoBtn.onclick = function() {
         modal.style.display = "none";
-        mostrarResultados(); // Muestra los botones "Volver a Jugar" y "Regresar" después de cerrar el modal
+        mostrarResultados();
+
+        // Enviar los puntos al finalizar el módulo
+        if (moduloFinalizado) {
+            enviarPuntos(25); 
+        }
     };
 }
 
@@ -181,7 +220,6 @@ document.getElementById('ir-al-modulo-4').addEventListener('click', irAlModulo4)
 
 // Inicialización
 window.onload = function() {
-    seleccionarPalabrasAlAzar(); // Selecciona las palabras al azar cuando la página se carga
-    actualizarProgreso(); // Asegura que la barra de progreso inicie en 0
+    seleccionarPalabrasAlAzar(); 
     mostrarSiguientePalabra();
 };

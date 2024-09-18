@@ -32,7 +32,6 @@ let indicePalabraActual = 0;
 let letraSeleccionada = null;
 let moduloFinalizado = false;
 
-
 function seleccionarPalabrasAleatorias(palabras) {
     let seleccionadas = [];
     let indicesUsados = new Set();
@@ -124,6 +123,14 @@ function mostrarModalFinal() {
         resultadosDiv.appendChild(palabraElement);
     });
 
+    // Mostrar los puntos obtenidos
+    let puntosObtenidos = document.getElementById("puntos-obtenidos");
+    if (puntosObtenidos) {
+        puntosObtenidos.textContent = "¡Has ganado 25 puntos!";
+    } else {
+        console.error('El elemento #puntos-obtenidos no se encontró en el DOM.');
+    }
+
     // Mostrar los botones para volver a jugar o regresar
     document.getElementById("volver-jugar-btn").style.display = "inline-block";
     document.getElementById("regresar-btn").style.display = "inline-block";
@@ -133,6 +140,29 @@ function mostrarModalFinal() {
 
     // Abrir el modal final
     abrirModal('modal-final');
+
+    // Enviar puntos al servidor
+    enviarPuntos(25);
+}
+
+function enviarPuntos(puntos) {
+    fetch('guardar_puntos.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            puntos: puntos,
+            modulo: 4 // Cambia esto según el módulo actual
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Respuesta del servidor:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
 
 // Evento de clic para el botón "Seguir"
@@ -163,9 +193,7 @@ document.getElementById("volver-jugar-btn").onclick = function() {
     reiniciarModulo(); // Volver a jugar reiniciando el módulo
 };
 
-
 document.getElementById("regresar-btn").onclick = function() {
-    window.location.href = 'index.php';
     regresar(); // Regresar a la pantalla principal
 };
 

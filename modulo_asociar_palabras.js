@@ -16,21 +16,23 @@ let imagenesYRespuestas = [
 
 let estado = {
     respuestasCorrectas: 0,
+    respuestasIncorrectas: 0, // Nuevo: contador de respuestas incorrectas
     indiceImagenActual: 0,
     respuestasUsuario: [],
-    totalImagenes: 5, // Fijo en 5 para mostrar exactamente 5 imágenes
+    totalImagenes: 5,
     imagenesSeleccionadas: [],
-    imagenesRespondidas: [] // Para almacenar las imágenes ya respondidas
+    imagenesRespondidas: [],
+    puntos: 0 // Nuevo: acumulador de puntos
 };
 
 // Función para inicializar el módulo
 function iniciarModulo() {
-    // Seleccionar 'totalImagenes' imágenes al azar
     estado.imagenesSeleccionadas = imagenesYRespuestas.sort(() => 0.5 - Math.random()).slice(0, estado.totalImagenes);
     estado.imagenesRespondidas = [];
     estado.indiceImagenActual = 0;
     estado.respuestasUsuario = [];  // Reiniciar las respuestas del usuario
     estado.respuestasCorrectas = 0; // Reiniciar el contador de respuestas correctas
+    estado.puntos = 0; // Reiniciar los puntos
 
     document.getElementById("barra-progreso-container").style.display = "block";
     document.getElementById("barra-progreso").value = 0;
@@ -61,7 +63,6 @@ function eliminarTildes(texto) {
 }
 
 // Función para verificar la respuesta
-// Función para verificar la respuesta
 function verificarRespuesta() {
     // Obtener la respuesta del usuario y normalizarla
     const respuestaUsuario = eliminarTildes(document.getElementById("respuesta").value.trim().toLowerCase());
@@ -86,10 +87,13 @@ function verificarRespuesta() {
 
     if (esRespuestaCorrecta) {
         estado.respuestasCorrectas++;
+        estado.puntos += 10; // Nuevo: sumar 10 puntos
         mostrarMensaje("Correcto +10", "green");
         reproducirSonido('sonido-correcto');
     } else {
-        mostrarMensaje("Incorrecto", "red");
+        estado.respuestasIncorrectas++; // Nuevo: contar respuesta incorrecta
+        estado.puntos -= 5; // Nuevo: restar 5 puntos
+        mostrarMensaje("Incorrecto -5", "red");
     }
 
     // Actualizar barra de progreso después de verificar la respuesta
@@ -102,16 +106,12 @@ function verificarRespuesta() {
     if (estado.imagenesSeleccionadas.length === 0) {
         finalizarModulo();
     } else {
-        // Avanzar al siguiente índice de imagen
         estado.indiceImagenActual = Math.min(estado.indiceImagenActual, estado.imagenesSeleccionadas.length - 1);
-        
-        // Cargar la siguiente imagen después de un pequeño retraso
         setTimeout(() => {
             cargarImagen();
         }, 1000);
     }
 }
-
 // Función para cambiar la imagen a otra al azar
 function cambiarImagen() {
     if (estado.imagenesSeleccionadas.length > 1) {
@@ -144,7 +144,7 @@ function mostrarResultados() {
     const resultadosContainer = document.getElementById("resultados-container");
     resultadosContainer.style.display = "block";
     
-    let resultadosTexto = `Correctas: ${estado.respuestasCorrectas} / ${estado.totalImagenes}\n\n`;
+    let resultadosTexto = `Respuestas correctas: ${estado.respuestasCorrectas} de ${estado.totalImagenes}.<br>Puntos Totales: ${estado.puntos}<br><br>`;
     estado.respuestasUsuario.forEach((respuesta, index) => {
         resultadosTexto += `<div class="respuesta">Imagen ${index + 1}: Correcta: ${respuesta.correcta}, Tu respuesta: ${respuesta.usuario}</div>`;
     });
@@ -207,7 +207,34 @@ function finalizarModulo() {
     document.getElementById("barra-progreso-container").style.display = 'none';
     mostrarResultados();
     reproducirSonido('sonido-fin-modulo');
-    mostrarMensajeFinal(); // Mostrar el mensaje final
+    mostrarMensajeFinal(); 
+    enviarPuntosAlServidor(); //enviar los puntos al servidor
+}
+
+// Función para enviar los puntos al servidor
+function enviarPuntosAlServidor() {
+    const puntos = estado.puntos;
+    const modulo = 1; // numero de modulos 
+
+    fetch('guardar_puntos.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            puntos: puntos,
+            modulo: modulo
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error('Error al guardar los puntos:', data.error);
+        } else {
+            console.log('Puntos guardados con éxito:', data.message);
+        }
+    })
+    .catch(error => console.error('Error al enviar los puntos:', error));
 }
 
 // Función para regresar a la página principal
