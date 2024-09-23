@@ -72,6 +72,41 @@ function reproducirAudio() {
     speechSynthesis.speak(utterance);
 }
 
+function marcarModuloCompletado(moduloNumero) {
+    localStorage.setItem(`modulo${moduloNumero}Completado`, true);
+    console.log(`Modulo ${moduloNumero} completado y guardado en localStorage.`);
+}
+
+
+// Validar si los tres módulos han sido completados
+function validarModulosCompletados() {
+    const modulo1Completado = localStorage.getItem('modulo1Completado') === 'true';
+    const modulo2Completado = localStorage.getItem('modulo2Completado') === 'true';
+    const modulo3Completado = localStorage.getItem('modulo3Completado') === 'true';
+
+    return modulo1Completado && modulo2Completado && modulo3Completado;
+}
+
+// Función para mostrar el botón "Examen Final" si los tres módulos están completados
+function mostrarBotonExamenFinal() {
+    const examenFinalButton = document.getElementById("examen-final-btn");
+
+    if (validarModulosCompletados()) {
+        examenFinalButton.style.display = "inline-block"; // Mostrar el botón si todos los módulos están completos
+    } else {
+        examenFinalButton.style.display = "none"; // Ocultar el botón si faltan módulos
+    }
+}
+
+// Función para redirigir al examen final
+function irAlExamenFinal() {
+    if (validarModulosCompletados()) {
+        window.location.href = 'examen_final.html';
+    } else {
+        alert("Para entrar al Examen Final debes completar los 3 módulos.");
+    }
+}
+
 function mostrarResultados() {
     document.getElementById("palabra-container").style.display = "none";
     document.getElementById("seguir-button").style.display = "none";
@@ -88,7 +123,6 @@ function mostrarResultados() {
         resultadosDiv.appendChild(palabraElement);
     });
 
-    // Comprobar si el elemento existe antes de modificarlo
     let puntosObtenidos = document.getElementById("puntos-obtenidos");
     if (puntosObtenidos) {
         puntosObtenidos.textContent = "¡Has ganado 25 puntos!";
@@ -96,11 +130,19 @@ function mostrarResultados() {
         console.error('El elemento #puntos-obtenidos no se encontró en el DOM.');
     }
 
+        // Guardar que el módulo 3 fue completado
+        marcarModuloCompletado(3);
+
+        // Verificar si los tres módulos están completos para mostrar el botón "Examen Final"
+        mostrarBotonExamenFinal();
+
     // Mostrar los botones para volver a jugar o regresar
     document.getElementById("volver-jugar-btn").style.display = "inline-block";
     document.getElementById("regresar-btn").style.display = "inline-block";
 }
 
+// Añadir el evento de clic al botón "Examen Final"
+document.getElementById('examen-final-btn').onclick = irAlExamenFinal;
 
 function enviarPuntos(puntos) {
     fetch('guardar_puntos.php', {
@@ -220,6 +262,7 @@ document.getElementById('ir-al-modulo-4').addEventListener('click', irAlModulo4)
 
 // Inicialización
 window.onload = function() {
-    seleccionarPalabrasAlAzar(); 
+    seleccionarPalabrasAlAzar();
     mostrarSiguientePalabra();
+    mostrarBotonExamenFinal(); 
 };

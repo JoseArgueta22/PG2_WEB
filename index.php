@@ -50,9 +50,10 @@ $conn->close();
                     <button onclick="irAlModulo(2)">Módulo 2 Completar oraciones</button>
                 </div>
                 <div class="module">
-                    <img src="images/repetir.png" alt="Módulo 3">
-                    <button onclick="irAlModulo(3)">Módulo 3 Repetir palabras</button>
+                <img src="images/repetir.png" alt="Módulo 3">
+                <button onclick="mostrarSubmodulos()">Módulo 3 Repetir palabras</button>
                 </div>
+
             </section>
             <section class="instructions">
                 <button onclick="mostrarInstrucciones('instrucciones1')">Instrucciones Módulo 1</button>
@@ -72,6 +73,14 @@ $conn->close();
         </div>
     </div>
 
+    <div id="submodule-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <span class="close" onclick="cerrarSubmodulePopup()">&times;</span>
+        <p>Selecciona un Módulo:</p>
+        <button onclick="seleccionarSubmodulo(3)">Repetir palabras</button>
+        <button onclick="seleccionarSubmodulo(4)">Repetir palabras por letra</button>
+    </div>
+</div>
     <!-- Barra de carga -->
     <div id="loading-bar" class="loading-bar" style="display: none;">
         <div class="loading-spinner"></div>
@@ -86,7 +95,7 @@ $conn->close();
             setTimeout(() => {
                 // Redirigir a la página de bienvenida con el parámetro del módulo
                 window.location.href = `bienvenida.html?modulo=${modulo}`;
-            }, 1000); // Simular un pequeño retraso para mostrar la barra de carga
+            }, 1000); 
         }
 
         function salir() {

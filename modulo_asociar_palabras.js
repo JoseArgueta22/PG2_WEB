@@ -150,6 +150,7 @@ function mostrarResultados() {
     });
     
     document.getElementById("resultados-texto").innerHTML = resultadosTexto;
+    marcarModuloCompleto(1);
 }
 
 // Función para reproducir sonido
@@ -183,21 +184,21 @@ function mostrarMensajeFinal() {
     const continuarBtn = document.getElementById("listo-btn");
     continuarBtn.onclick = function() {
         modal.style.display = "none";
-        // Aquí no se realiza ninguna otra acción
+
     }
 
     // Obtener el elemento del botón de cerrar
     const span = document.getElementsByClassName("close")[0];
     span.onclick = function() {
         modal.style.display = "none";
-        // Aquí no se realiza ninguna otra acción
+       
     }
 
     // Cerrar el modal si se hace clic fuera del contenido
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
-            // Aquí no se realiza ninguna otra acción
+           
         }
     }
 }
@@ -208,7 +209,7 @@ function finalizarModulo() {
     mostrarResultados();
     reproducirSonido('sonido-fin-modulo');
     mostrarMensajeFinal(); 
-    enviarPuntosAlServidor(); //enviar los puntos al servidor
+    enviarPuntosAlServidor(); 
 }
 
 // Función para enviar los puntos al servidor
@@ -235,6 +236,11 @@ function enviarPuntosAlServidor() {
         }
     })
     .catch(error => console.error('Error al enviar los puntos:', error));
+}
+
+function marcarModuloCompleto(modulo) {
+    localStorage.setItem(`modulo${modulo}Completo`, 'true');
+    console.log(`Modulo ${modulo} completado y guardado en localStorage.`);
 }
 
 // Función para regresar a la página principal

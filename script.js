@@ -1,21 +1,34 @@
-// script.js
-
-// Crear una instancia de Audio para el sonido de clic
-const clickSound = new Audio('sounds/Sonido_mario.wav');
-
-// Función para reproducir el sonido de clic
-function playClickSound() {
-    clickSound.currentTime = 0; // Reiniciar el sonido si ya está en reproducción
-    clickSound.play();
-}
-
 // Función que se llama al hacer clic en los botones de los módulos
 function iniciarActividad(modulo) {
-    playClickSound(); // Reproducir el sonido
-    // Aquí iría la lógica para iniciar la actividad del módulo
     console.log(`Iniciar actividad del ${modulo}`);
+    if (modulo === 3) {
+        mostrarSubmodulos();
+    } else {
+        irAlModulo(modulo);
+    }
 }
 
+function irAlModulo(modulo) {
+    document.getElementById("loading-bar").style.display = "flex"; // Mostrar barra de carga
+    setTimeout(() => {
+        window.location.href = `bienvenida.html?modulo=${modulo}`;
+    }, 1000); // Simular un pequeño retraso para mostrar la barra de carga
+}
+
+function mostrarSubmodulos() {
+    const submodulePopup = document.getElementById("submodule-popup");
+    submodulePopup.style.display = "flex"; // Mostrar la ventana emergente para seleccionar submódulos
+}
+
+function cerrarSubmodulePopup() {
+    const submodulePopup = document.getElementById("submodule-popup");
+    submodulePopup.style.display = "none"; // Ocultar la ventana emergente de submódulos
+}
+
+function seleccionarSubmodulo(modulo) {
+    cerrarSubmodulePopup();
+    irAlModulo(modulo);
+}
 
 function mostrarInstrucciones(id) {
     const instrucciones = {
@@ -37,6 +50,5 @@ function cerrarPopup() {
 }
 
 function salir() {
-    // Función para el botón de salir (si tienes alguna funcionalidad aquí)
+    // Función para el botón de salir 
 }
-

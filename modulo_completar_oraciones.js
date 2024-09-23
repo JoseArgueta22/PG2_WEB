@@ -164,6 +164,7 @@ function finalizarModulo() {
     // Mostrar el modal final
     mostrarModalFinal();
     enviarPuntosAlServidor(); // Enviar los puntos al servidor
+    marcarModuloCompleto(2);
 }
 
 // Función para enviar los puntos al servidor
@@ -205,6 +206,11 @@ function reiniciarModulo() {
 // Función para ir al Módulo 3
 function irAlModulo3() {
     window.location.href = 'bienvenida.html?modulo=3';
+}
+
+function marcarModuloCompleto(modulo) {
+    localStorage.setItem(`modulo${modulo}Completo`, 'true');
+    console.log(`Modulo ${modulo} completado y guardado en localStorage.`);
 }
 
 // Cargar la primera oración cuando la página se carga

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Final</title>
+    <link rel="stylesheet" href="examen_final.css">
+</head>
+<body>
+    <div id="examen-container">
+        <h1>Examen Final</h1>
+        <div id="modulo-1-container">
+            <h2>Actividad 1: Asociar Palabras con Imágenes</h2>
+            <img id="imagen-actividad" src="" alt="Imagen para asociar">
+            <input type="text" id="respuesta-imagen" placeholder="Escribe la palabra aquí">
+            <button id="enviar-imagen-btn">Enviar Respuesta</button>
+            <p id="resultado-imagen"></p>
+        </div>
+        <div id="modulo-2-container" style="display:none;">
+            <h2>Actividad 2: Repetir Palabras</h2>
+            <p id="palabra-actividad"></p>
+            <button id="escuchar-palabra-btn">Escuchar Palabra</button>
+            <input type="text" id="respuesta-palabra" placeholder="Escribe la palabra aquí">
+            <button id="enviar-palabra-btn">Enviar Respuesta</button>
+            <p id="resultado-palabra"></p>
+        </div>
+        <div id="modulo-3-container" style="display:none;">
+            <h2>Actividad 3: Completar Oraciones</h2>
+            <p id="oracion-actividad"></p>
+            <input type="text" id="respuesta-oracion" placeholder="Completa la oración">
+            <button id="enviar-oracion-btn">Enviar Respuesta</button>
+            <p id="resultado-oracion"></p>
+        </div>
+        <div id="resultado-final" style="display:none;">
+            <h2>Resultados Finales</h2>
+            <p id="resultado-final-text"></p>
+            <button id="volver-inicio-btn">Volver al Inicio</button>
+            <button id="bonificacion-btn" style="display:none;">Reclamar Bonificación</button>
+        </div>
+    </div>
+    <script src="examen_final.js"></script>
+</body>
+</html>
