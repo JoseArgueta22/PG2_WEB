@@ -72,17 +72,17 @@ function reproducirAudio() {
     speechSynthesis.speak(utterance);
 }
 
-function marcarModuloCompletado(moduloNumero) {
-    localStorage.setItem(`modulo${moduloNumero}Completado`, true);
+function marcarModuloCompleto(moduloNumero) {
+    localStorage.setItem(`modulo${moduloNumero}Completo`, true);
     console.log(`Modulo ${moduloNumero} completado y guardado en localStorage.`);
 }
 
 
 // Validar si los tres módulos han sido completados
 function validarModulosCompletados() {
-    const modulo1Completado = localStorage.getItem('modulo1Completado') === 'true';
-    const modulo2Completado = localStorage.getItem('modulo2Completado') === 'true';
-    const modulo3Completado = localStorage.getItem('modulo3Completado') === 'true';
+    const modulo1Completado = localStorage.getItem('modulo1Completo') === 'true';
+    const modulo2Completado = localStorage.getItem('modulo2Completo') === 'true';
+    const modulo3Completado = localStorage.getItem('modulo3Completo') === 'true';
 
     return modulo1Completado && modulo2Completado && modulo3Completado;
 }
@@ -131,7 +131,7 @@ function mostrarResultados() {
     }
 
         // Guardar que el módulo 3 fue completado
-        marcarModuloCompletado(3);
+        marcarModuloCompleto(3);
 
         // Verificar si los tres módulos están completos para mostrar el botón "Examen Final"
         mostrarBotonExamenFinal();

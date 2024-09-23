@@ -239,7 +239,7 @@ function enviarPuntosAlServidor() {
 }
 
 function marcarModuloCompleto(modulo) {
-    localStorage.setItem(`modulo${modulo}Completo`, 'true');
+    localStorage.setItem(`modulo${modulo}Completo`, true);
     console.log(`Modulo ${modulo} completado y guardado en localStorage.`);
 }
 
