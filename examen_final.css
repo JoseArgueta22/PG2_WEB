@@ -1,13 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #2af834;
     margin: 0;
     padding: 20px;
 }
 
 #examen-final-container {
     width: 90%;
-    max-width: 600px; /* Reducción del ancho */
+    max-width: 600px;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
@@ -26,7 +26,7 @@ p {
 }
 
 button {
-    width: auto; /* Ajuste para reducir el tamaño de los botones */
+    width: auto;
     padding: 10px 20px;
     margin: 10px;
     background-color: #007BFF;
@@ -35,6 +35,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease; /* Efecto de transición suave */
 }
 
 button:hover {
@@ -47,27 +48,76 @@ button:hover {
     color: #28a745;
 }
 
+/* Estilo del Modal */
 .modal {
-    display: none;
+    display: none; /* Se oculta por defecto */
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro */
     z-index: 1000;
 }
 
 .modal-content {
-    margin: 15% auto;
+    margin: 10% auto; /* Centrar el modal verticalmente */
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
+    background-color: #fff; /* Color de fondo del modal */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 90%; /* Ancho del modal */
+    max-width: 500px; /* Ancho máximo */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    text-align: center; /* Alineación del texto al centro */
+    animation: fadeIn 0.3s; /* Animación de entrada */
 }
 
+.modal-header {
+    border-bottom: 1px solid #ccc; /* Línea inferior en el encabezado */
+    padding-bottom: 10px; /* Espacio inferior */
+    margin-bottom: 20px; /* Espacio entre encabezado y contenido */
+}
+
+.modal-header h2 {
+    margin: 0; /* Sin margen */
+    color: #333; /* Color del texto */
+}
+
+.modal-footer {
+    margin-top: 20px; /* Espacio superior */
+}
+
+.modal-footer button {
+    padding: 10px 15px; /* Espacio interno */
+    background-color: #007BFF; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de mano */
+}
+
+.modal-footer button:hover {
+    background-color: #0056b3; /* Color en hover */
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Comienza invisible */
+    }
+    to {
+        opacity: 1; /* Termina visible */
+    }
+}
+
+/* Botones en el contenedor */
+#botones-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px; 
+}
+
+/* Estilo para arrastrar y soltar */
 #finalizar-btn {
     display: none;
 }

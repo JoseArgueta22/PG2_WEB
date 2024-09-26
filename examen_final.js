@@ -83,14 +83,23 @@ function cargarPreguntas() {
 
     preguntasSeleccionadasParte1.forEach((item, index) => {
         const div = document.createElement("div");
-        div.innerHTML = `<p>${item.pregunta}</p>` +
+        div.innerHTML = `<p>${index + 1}. ${item.pregunta}</p>` + // Agregar número
             item.opciones.map(opcion => `<label><input type="radio" name="pregunta${index}" value="${opcion}"> ${opcion}</label>`).join("");
         contenedorPreguntas.appendChild(div);
     });
 }
 
-// En la función validarParte1, asegurate de no contar respuestas incorrectas más de una vez
+// En la función validarParte1
 function validarParte1() {
+    const todasRespondidas = preguntasSeleccionadasParte1.every((item, index) => {
+        return document.querySelector(`input[name="pregunta${index}"]:checked`);
+    });
+
+    if (!todasRespondidas) {
+        mostrarModal("Alerta: Debes responder todas las preguntas antes de continuar.");
+        return;
+    }
+
     preguntasSeleccionadasParte1.forEach((item, index) => {
         const respuestaSeleccionada = document.querySelector(`input[name="pregunta${index}"]:checked`);
         if (respuestaSeleccionada) {
@@ -113,16 +122,33 @@ function cargarFrases() {
 
     frasesSeleccionadasParte2.forEach((item, index) => {
         const div = document.createElement("div");
-        div.innerHTML = `<p>${item.frase}</p><input type="text" id="completar-${index}" />`;
+        div.innerHTML = `<p>${index + 1}. ${item.frase}</p><input type="text" id="completar-${index}" />`; // Agregar número
         contenedorFrases.appendChild(div);
     });
 }
 
 function validarParte2() {
+    const todasRespondidas = frasesSeleccionadasParte2.every((item, index) => {
+        const respuesta = document.getElementById(`completar-${index}`).value.trim();
+        return respuesta !== ""; // Verificar que todas las respuestas están completas
+    });
+
+    if (!todasRespondidas) {
+        mostrarModal("Alerta: Debes llenar todas las frases antes de continuar.");
+        return;
+    }
+
     frasesSeleccionadasParte2.forEach((item, index) => {
         const respuesta = document.getElementById(`completar-${index}`).value.trim().toLowerCase();
-        if (respuesta) { 
-            if (respuesta === item.respuesta.toLowerCase()) {
+        
+        // Normalizar respuestas para quitar tildes
+        const respuestaNormalizada = respuesta.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        // Normalizar la respuesta correcta de la frase
+        const respuestaCorrectaNormalizada = item.respuesta.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        if (respuesta) {
+            if (respuestaNormalizada === respuestaCorrectaNormalizada) {
                 respuestasCorrectas++;
                 puntuacionTotal += 10; 
             } else {
@@ -141,14 +167,14 @@ function cargarOracionesArrastrar() {
 
     oracionesSeleccionadasParte3.forEach((item, index) => {
         const div = document.createElement("div");
-        div.innerHTML = `<p>${item.oracion.replace('______', `<span id="dropzone-${index}" class="dropzone"></span>`)}</p>`;
+        // Añadir numeración a las oraciones
+        div.innerHTML = `<p>${index + 1}. ${item.oracion.replace('______', `<span id="dropzone-${index}" class="dropzone"></span>`)}</p>`;
         contenedorOraciones.appendChild(div);
     
         const dropzone = document.getElementById(`dropzone-${index}`);
         dropzone.addEventListener("dragover", onDragOver);  // Permitir el arrastre sobre la zona
         dropzone.addEventListener("drop", onDrop);          // Permitir soltar en la zona
     });
-    
     
     cargarPalabrasArrastrar(); // Cargar palabras para arrastrar
 }
@@ -190,17 +216,26 @@ function onDrop(event) {
 }
 
 function validarParte3() {
+    const todasRespondidas = oracionesSeleccionadasParte3.every((item, index) => {
+        const respuesta = document.getElementById(`dropzone-${index}`).textContent.trim();
+        return respuesta !== ""; // Verificar que todas las respuestas están completas
+    });
+
+    if (!todasRespondidas) {
+        mostrarModal("Alerta: Debes llenar todas las oraciones antes de continuar.");
+        return;
+    }
+
     oracionesSeleccionadasParte3.forEach((item, index) => {
-        const palabraSoltada = document.querySelector(`#dropzone-${index}`).textContent.trim();
-        if (palabraSoltada) {
-            if (palabraSoltada === item.respuesta) {
-                respuestasCorrectas++;
-                puntuacionTotal += 10;
-            } else {
-                puntuacionTotal -= 5;
-            }
+        const respuesta = document.getElementById(`dropzone-${index}`).textContent.trim().toLowerCase();
+        if (respuesta === item.respuesta.toLowerCase()) {
+            respuestasCorrectas++;
+            puntuacionTotal += 10; 
+        } else {
+            puntuacionTotal -= 5; 
         }
     });
+
     mostrarResultadosFinales();
 }
 
@@ -229,17 +264,24 @@ function mostrarParte(parte) {
 }
 
 function mostrarResultadosFinales() {
-    // Verificar si los puntos ya fueron enviados
+    // Verificar si los puntos ya han sido enviados
     if (!puntosEnviados) {
         document.getElementById("resultado-final").textContent = `Has acertado ${respuestasCorrectas} respuestas. Puntuación total: ${puntuacionTotal}`;
         document.getElementById("resultado-final").style.display = "block";
-        mostrarModal("¡Felicidades, terminaste el examen!");
+
+        const mensajeAdicional = "Recuerda que puedes volver a los módulos para mejorar tu conocimiento. Cuando quieras volver hacer el examen completa los modulos del 1 al 3 otra vez :D Buena suerte";
+        mostrarModal(`¡Felicidades, terminaste el examen!\n\n${mensajeAdicional}`);
 
         enviarPuntos(puntuacionTotal); 
         puntosEnviados = true; 
     } else {
         console.log("Los puntos ya han sido enviados.");
     }
+
+    // Limpiar claves de los modulos 
+    localStorage.removeItem('modulo1Completo');
+    localStorage.removeItem('modulo2Completo');
+    localStorage.removeItem('modulo3Completo');
 }
 
 function mostrarModal(mensaje) {
