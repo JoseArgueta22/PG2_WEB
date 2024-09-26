@@ -1,57 +1,98 @@
 body {
     font-family: Arial, sans-serif;
-}
-
-#examen-container {
-    max-width: 600px;
-    margin: auto;
+    background-color: #f2f2f2;
+    margin: 0;
     padding: 20px;
+}
+
+#examen-final-container {
+    width: 90%;
+    max-width: 600px; /* Reducción del ancho */
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
     text-align: center;
+    color: #333;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-input {
-    padding: 10px;
-    font-size: 16px;
+p {
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 button {
-    padding: 10px;
-    font-size: 16px;
+    width: auto; /* Ajuste para reducir el tamaño de los botones */
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 #resultado-final {
-    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: #28a745;
 }
 
-#modal-final {
+.modal {
+    display: none;
     position: fixed;
-    top: 0;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none; /* Asegúrate de que esté oculto por defecto */
-    align-items: center;
-    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
-#modal-content {
-    background: #fff;
+.modal-content {
+    margin: 15% auto;
     padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
     text-align: center;
-    width: 300px; /* Ajusta el tamaño si es necesario */
 }
 
-.modal-button {
-    padding: 10px;
-    font-size: 16px;
+#finalizar-btn {
+    display: none;
+}
+
+#palabras-arrastrar-3 {
+    display: flex;
+    gap: 10px; 
+    flex-wrap: wrap; 
+}
+
+.draggable {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     cursor: pointer;
     margin: 5px;
+}
+
+.dropzone {
+    display: inline-block;
+    min-width: 50px;
+    height: 30px;
+    border: 2px dashed #ccc;
+    margin: 0 10px;
+    text-align: center;
+    vertical-align: middle;
 }

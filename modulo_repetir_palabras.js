@@ -101,7 +101,7 @@ function mostrarBotonExamenFinal() {
 // Función para redirigir al examen final
 function irAlExamenFinal() {
     if (validarModulosCompletados()) {
-        window.location.href = 'examen_final.html';
+        window.location.href = 'bienvenida.html?modulo=5';
     } else {
         alert("Para entrar al Examen Final debes completar los 3 módulos.");
     }
