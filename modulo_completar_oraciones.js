@@ -81,13 +81,13 @@ function seleccionarOpcion(opcionSeleccionada) {
 
     if (opcionSeleccionada === correcta) {
         estado.respuestasCorrectas++;
-        estado.puntos += 10; // Sumar 10 puntos por respuesta correcta
+        estado.puntos += 10; // Sumar puntos por respuesta correcta
         mensaje.textContent = "¡Correcto! +10";
         mensaje.style.color = "green";
         document.getElementById("sonido-correcto").play();
     } else {
         estado.respuestasIncorrectas++;
-        estado.puntos -= 5; // Restar 5 puntos por respuesta incorrecta
+        estado.puntos -= 5; // Restar puntos por respuesta incorrecta
         mensaje.textContent = "Incorrecto -5.";
         mensaje.style.color = "red";
     }
@@ -122,7 +122,7 @@ function cambiarOracion() {
 function mostrarModalFinal() {
     document.getElementById("modal-final").style.display = "block";
 
-    // Hacer clic en la "X" para cerrar el modal
+    // cerrar el modal
     document.getElementById("cerrar-modal-btn").onclick = function() {
         cerrarModal();
     };

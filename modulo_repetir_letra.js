@@ -109,7 +109,6 @@ function seleccionarLetra(letra) {
 }
 
 function mostrarModalFinal() {
-    // Ocultar botones de "Seguir" y "Escuchar"
     document.getElementById("seguir-button").style.display = "none";
     document.getElementById("escuchar-button").style.display = "none";
     document.getElementById("palabra").style.display = "none";  // Ocultar la palabra actual
@@ -153,7 +152,7 @@ function enviarPuntos(puntos) {
         },
         body: JSON.stringify({
             puntos: puntos,
-            modulo: 4 // Cambia esto según el módulo actual
+            modulo: 4 // numero de modulo
         }),
     })
     .then(response => response.json())
@@ -168,7 +167,7 @@ function enviarPuntos(puntos) {
 // Evento de clic para el botón "Seguir"
 document.getElementById("seguir-button").onclick = function() {
     if (moduloFinalizado) {
-        mostrarModalFinal(); // Aquí se mostrará el modal cuando finalice
+        mostrarModalFinal(); // mostrar el modal cuando finalice
     } else {
         mostrarSiguientePalabra();
     }

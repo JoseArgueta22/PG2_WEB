@@ -127,7 +127,6 @@ $(document).ready(function() {
             data: $(this).serialize(),
             success: function(response) {
                 showAlert(response); // Mostrar el mensaje de alerta con la respuesta
-                // No se cierra automáticamente el modal ni el mensaje
             }
         });
     });

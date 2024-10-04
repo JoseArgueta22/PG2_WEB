@@ -23,25 +23,25 @@ h1 {
     color: #4A90E2; /* Azul más suave */
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Resplandor sutil */
     background: linear-gradient(90deg, #4A90E2, #50E3C2);
-    -webkit-background-clip: text; /* Prefijo para navegadores WebKit */
-    background-clip: text; /* Propiedad estándar */
-    -webkit-text-fill-color: transparent; /* Prefijo para navegadores WebKit */
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    -webkit-text-fill-color: transparent; 
     padding: 10px;
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo ligeramente blanco */
+    background-color: rgba(255, 255, 255, 0.7); 
 }
 
 h2 {
     font-size: 1.5em;
     color: #D9534F; /* Rojo coral más suave */
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Resplandor sutil */
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); 
     background: linear-gradient(90deg, #4f7fd9, #4323f5);
-    -webkit-background-clip: text; /* Prefijo para navegadores WebKit */
-    background-clip: text; /* Propiedad estándar */
-    -webkit-text-fill-color: transparent; /* Prefijo para navegadores WebKit */
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    -webkit-text-fill-color: transparent; 
     padding: 5px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo ligeramente blanco */
+    background-color: rgba(255, 255, 255, 0.7); 
 }
 
 .modules {
@@ -60,7 +60,7 @@ h2 {
     text-align: center;
     max-width: 300px; /* Tamaño máximo del contenedor */
     min-width: 220px; /* Tamaño mínimo del contenedor */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -90,8 +90,8 @@ h2 {
 }
 
 .modules button:hover {
-    background-color: #357ABD; /* Azul más oscuro al pasar el cursor */
-    transform: translateY(-2px); /* Efecto de elevación al pasar el cursor */
+    background-color: #357ABD; 
+    transform: translateY(-2px); 
 }
 
 .instructions button {
@@ -107,8 +107,8 @@ h2 {
 }
 
 .instructions button:hover {
-    background-color: #FF4500; /* Rojo anaranjado más oscuro al pasar el cursor */
-    transform: translateY(-2px); /* Efecto de elevación al pasar el cursor */
+    background-color: #FF4500; 
+    transform: translateY(-2px); 
 }
 
 footer {
@@ -130,11 +130,11 @@ footer {
     position: fixed;
     bottom: 30px; /* Espacio desde el borde inferior */
     left: 20px; /* Espacio desde el borde izquierdo */
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    z-index: 1000; 
 }
 
 .exit-button:hover {
-    background-color: #C9302C; /* Rojo más oscuro al pasar el cursor */
+    background-color: #C9302C; 
 }
 
 /* Estilos para el mensaje emergente */
@@ -145,7 +145,7 @@ footer {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+    background-color: rgba(0, 0, 0, 0.7); 
     justify-content: center;
     align-items: center;
     z-index: 1000; /* Asegurarse de que el popup esté al frente */
@@ -185,7 +185,7 @@ footer {
 }
 
 .popup-content .accept-btn {
-    background-color: #4CAF50; /* Verde atractivo */
+    background-color: #4CAF50; 
     color: white; /* Texto en blanco */
     padding: 10px 20px;
     border: none;
@@ -196,7 +196,7 @@ footer {
 }
 
 .popup-content .accept-btn:hover {
-    background-color: #45a049; /* Verde más oscuro en hover */
+    background-color: #45a049; 
     transform: translateY(-2px); /* Ligeramente hacia arriba */
 }
 
@@ -221,7 +221,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5); 
     z-index: 9999;
 }
 

@@ -21,7 +21,7 @@ let palabras = [
     "zapato", "zorro", "zanahoria", "zebra", "zumo"
 ];
 
-let cantidadPalabras = 5; // Cambia este valor para establecer la cantidad de palabras por sesión
+let cantidadPalabras = 5; // palabras para mostrar por sesion 
 let palabrasSeleccionadas = [];
 let indiceActual = 0;
 let moduloFinalizado = false;
@@ -53,7 +53,7 @@ function mostrarSiguientePalabra() {
             document.getElementById("seguir-button").textContent = "Finalizar";
         }
     } else if (moduloFinalizado) {
-        // Si ya hemos llegado al final, mostramos el modal final
+        // mostrar el modal final
         mostrarModalFinal();
     }
 }
@@ -152,7 +152,7 @@ function enviarPuntos(puntos) {
         },
         body: JSON.stringify({
             puntos: puntos,
-            modulo: 3
+            modulo: 3 //numero de modulo
         }),
     })
     .then(response => response.text()) 

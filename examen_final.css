@@ -35,7 +35,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease; /* Efecto de transición suave */
+    transition: background-color 0.3s ease; 
 }
 
 button:hover {
@@ -50,54 +50,54 @@ button:hover {
 
 /* Estilo del Modal */
 .modal {
-    display: none; /* Se oculta por defecto */
+    display: none; 
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro */
+    background-color: rgba(0, 0, 0, 0.7); 
     z-index: 1000;
 }
 
 .modal-content {
-    margin: 10% auto; /* Centrar el modal verticalmente */
+    margin: 10% auto; 
     padding: 20px;
-    background-color: #fff; /* Color de fondo del modal */
-    border-radius: 10px; /* Bordes redondeados */
-    width: 90%; /* Ancho del modal */
-    max-width: 500px; /* Ancho máximo */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-    text-align: center; /* Alineación del texto al centro */
-    animation: fadeIn 0.3s; /* Animación de entrada */
+    background-color: #fff; 
+    border-radius: 10px; 
+    width: 90%; 
+    max-width: 500px; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+    text-align: center; 
+    animation: fadeIn 0.3s; 
 }
 
 .modal-header {
-    border-bottom: 1px solid #ccc; /* Línea inferior en el encabezado */
-    padding-bottom: 10px; /* Espacio inferior */
-    margin-bottom: 20px; /* Espacio entre encabezado y contenido */
+    border-bottom: 1px solid #ccc; 
+    padding-bottom: 10px; 
+    margin-bottom: 20px; 
 }
 
 .modal-header h2 {
-    margin: 0; /* Sin margen */
-    color: #333; /* Color del texto */
+    margin: 0; 
+    color: #333; 
 }
 
 .modal-footer {
-    margin-top: 20px; /* Espacio superior */
+    margin-top: 20px; 
 }
 
 .modal-footer button {
-    padding: 10px 15px; /* Espacio interno */
-    background-color: #007BFF; /* Color de fondo del botón */
-    color: #fff; /* Color del texto del botón */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de mano */
+    padding: 10px 15px; 
+    background-color: #007BFF; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
 }
 
 .modal-footer button:hover {
-    background-color: #0056b3; /* Color en hover */
+    background-color: #0056b3; 
 }
 
 /* Animación de entrada */

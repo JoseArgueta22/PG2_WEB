@@ -8,7 +8,7 @@ let preguntasSeleccionadasParte1 = [];
 let frasesSeleccionadasParte2 = [];
 let oracionesSeleccionadasParte3 = [];
 
-// Preguntas sencillas para preescolares (10 preguntas)
+// Preguntas parte 1
 const preguntasParte1 = [
     { pregunta: "¿Cuál de estas es una fruta?", opciones: ["manzana", "perro", "coche"], respuestaCorrecta: "manzana" },
     { pregunta: "¿Qué animal dice 'miau'?", opciones: ["gato", "pato", "vaca"], respuestaCorrecta: "gato" },
@@ -22,7 +22,7 @@ const preguntasParte1 = [
     { pregunta: "¿Qué se usa para escribir?", opciones: ["lápiz", "cuchara", "vaso"], respuestaCorrecta: "lápiz" }
 ];
 
-// Frases simples para completar (10 frases)
+// Frases para completar parte 2 
 const frasesParaCompletar = [
     { frase: "La ______ es roja y tiene semillas.", respuesta: "manzana" },
     { frase: "El ______ es amarillo y largo.", respuesta: "plátano" },
@@ -36,6 +36,7 @@ const frasesParaCompletar = [
     { frase: "La ______ es marrón y tiene caparazón.", respuesta: "tortuga" }
 ];
 
+//oraciones parte 3
 const oracionesParte3 = [
     { oracion: "El gato dice ______.", respuesta: "miau" },
     { oracion: "La manzana es ______.", respuesta: "roja" },
@@ -78,12 +79,12 @@ document.getElementById("verificar-btn").addEventListener("click", function () {
 
 function cargarPreguntas() {
     const contenedorPreguntas = document.getElementById("preguntas-1");
-    preguntasSeleccionadasParte1 = seleccionarAleatorios(preguntasParte1, 5); // Seleccionar 5 preguntas al azar
+    preguntasSeleccionadasParte1 = seleccionarAleatorios(preguntasParte1, 5); // Seleccionar preguntas al azar
     contenedorPreguntas.innerHTML = "";
 
     preguntasSeleccionadasParte1.forEach((item, index) => {
         const div = document.createElement("div");
-        div.innerHTML = `<p>${index + 1}. ${item.pregunta}</p>` + // Agregar número
+        div.innerHTML = `<p>${index + 1}. ${item.pregunta}</p>` + // Agregar número a cada inciso 
             item.opciones.map(opcion => `<label><input type="radio" name="pregunta${index}" value="${opcion}"> ${opcion}</label>`).join("");
         contenedorPreguntas.appendChild(div);
     });
@@ -117,7 +118,7 @@ function validarParte1() {
 
 function cargarFrases() {
     const contenedorFrases = document.getElementById("frases-completar");
-    frasesSeleccionadasParte2 = seleccionarAleatorios(frasesParaCompletar, 5); // Seleccionar 5 frases al azar
+    frasesSeleccionadasParte2 = seleccionarAleatorios(frasesParaCompletar, 5); // Seleccionar frases al azar
     contenedorFrases.innerHTML = "";
 
     frasesSeleccionadasParte2.forEach((item, index) => {
@@ -162,7 +163,7 @@ function validarParte2() {
 // Función para cargar las oraciones de la parte 3
 function cargarOracionesArrastrar() {
     const contenedorOraciones = document.getElementById("oraciones-arrastrar");
-    oracionesSeleccionadasParte3 = seleccionarAleatorios(oracionesParte3, 5); // Seleccionar 5 oraciones al azar
+    oracionesSeleccionadasParte3 = seleccionarAleatorios(oracionesParte3, 5); // Seleccionar oraciones al azar
     contenedorOraciones.innerHTML = "";
 
     oracionesSeleccionadasParte3.forEach((item, index) => {
@@ -278,7 +279,7 @@ function mostrarResultadosFinales() {
         console.log("Los puntos ya han sido enviados.");
     }
 
-    // Limpiar claves de los modulos 
+    // Limpiar claves de los modulos en el LocalStorage
     localStorage.removeItem('modulo1Completo');
     localStorage.removeItem('modulo2Completo');
     localStorage.removeItem('modulo3Completo');
@@ -291,6 +292,13 @@ function mostrarModal(mensaje) {
 
 document.getElementById("close-modal").addEventListener("click", function () {
     document.getElementById("modal").style.display = "none";
+});
+
+// Cerrar el modal al hacer clic fuera de él
+document.getElementById("modal").addEventListener("click", function (event) {
+    if (event.target === this) {
+        this.style.display = "none";
+    }
 });
 
 // Regresar a la página principal

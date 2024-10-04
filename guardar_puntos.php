@@ -1,5 +1,5 @@
 <?php
-session_start(); // Asegúrate de que la sesión está iniciada
+session_start(); 
 
 include 'db_connection.php';
 

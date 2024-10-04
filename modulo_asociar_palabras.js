@@ -11,18 +11,18 @@ let imagenesYRespuestas = [
     { src: "images/casa.png", respuesta: "casa" },
     { src: "images/gota.jpg", respuesta: "gota" },
     { src: "images/pan.png", respuesta: "pan" }
-    // Añadir más imágenes y respuestas hasta tener 50
+    
 ];
 
 let estado = {
     respuestasCorrectas: 0,
-    respuestasIncorrectas: 0, // Nuevo: contador de respuestas incorrectas
+    respuestasIncorrectas: 0, // contador de respuestas incorrectas
     indiceImagenActual: 0,
     respuestasUsuario: [],
     totalImagenes: 5,
     imagenesSeleccionadas: [],
     imagenesRespondidas: [],
-    puntos: 0 // Nuevo: acumulador de puntos
+    puntos: 0 // acumulador de puntos
 };
 
 // Función para inicializar el módulo
@@ -87,12 +87,12 @@ function verificarRespuesta() {
 
     if (esRespuestaCorrecta) {
         estado.respuestasCorrectas++;
-        estado.puntos += 10; // Nuevo: sumar 10 puntos
+        estado.puntos += 10; // sumar puntos
         mostrarMensaje("Correcto +10", "green");
         reproducirSonido('sonido-correcto');
     } else {
-        estado.respuestasIncorrectas++; // Nuevo: contar respuesta incorrecta
-        estado.puntos -= 5; // Nuevo: restar 5 puntos
+        estado.respuestasIncorrectas++; // contar respuesta incorrecta
+        estado.puntos -= 5; // restar puntos
         mostrarMensaje("Incorrecto -5", "red");
     }
 

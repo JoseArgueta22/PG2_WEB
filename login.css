@@ -13,8 +13,8 @@ h1, h2 {
 
 /* Título de bienvenida */
 h1 {
-    margin: 0; /* Ajustado para eliminar el margen negativo */
-    padding-bottom: 10px; /* Ajuste del espacio debajo del título */
+    margin: 0; 
+    padding-bottom: 10px; 
 }
 
 /* Contenedor principal */
@@ -47,13 +47,13 @@ h1 {
 
 /* Ajuste de espacio para el contenedor y el título */
 .login-container {
-    padding-top: 40px; /* Ajusta este valor para subir más el contenedor */
+    padding-top: 40px; 
 }
 
 /* Ajuste de la imagen */
 .login-image {
-    width: 150px; /* Ajusta el tamaño de la imagen aquí */
-    height: 150px; /* Ajusta el tamaño de la imagen aquí */
+    width: 150px; 
+    height: 150px; 
     border-radius: 50%;
     border: 4px solid #007bff;
     margin-bottom: 15px;
@@ -118,14 +118,14 @@ button:hover {
 /* Enlaces */
 .recover-link a,
 .recover-username-link a {
-    color: #007bff; /* Asegúrate de que ambos enlaces tengan el mismo color */
+    color: #007bff; 
     text-decoration: none;
     font-size: 16px;
 }
 
 /* Estilo para el enlace "Olvidaste tu contraseña?" */
 .recover-link {
-    margin-bottom: 10px; /* Espacio entre "Olvidaste tu contraseña?" y el siguiente enlace */
+    margin-bottom: 10px; 
 }
 
 .recover-link a:hover {
@@ -184,7 +184,7 @@ button:hover {
     right: 10px;
     font-size: 20px;
     cursor: pointer;
-    color: #333; /* Asegúrate de que el color del icono sea visible */
+    color: #333; 
 }
 
 /* Estilos para el mensaje de alerta */
@@ -198,7 +198,7 @@ button:hover {
     padding: 15px;
     border: 1px solid #f5c6cb;
     border-radius: 5px;
-    z-index: 1000; /* Asegura que el mensaje de alerta esté encima de otros elementos */
+    z-index: 1000; 
     display: flex;
     flex-direction: column;
     align-items: center;
