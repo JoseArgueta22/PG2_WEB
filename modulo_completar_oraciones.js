@@ -81,14 +81,14 @@ function seleccionarOpcion(opcionSeleccionada) {
 
     if (opcionSeleccionada === correcta) {
         estado.respuestasCorrectas++;
-        estado.puntos += 10; // Sumar puntos por respuesta correcta
-        mensaje.textContent = "¡Correcto! +10";
+        estado.puntos += 5; // Sumar puntos por respuesta correcta
+        mensaje.textContent = "¡Correcto! +5";
         mensaje.style.color = "green";
         document.getElementById("sonido-correcto").play();
     } else {
         estado.respuestasIncorrectas++;
-        estado.puntos -= 5; // Restar puntos por respuesta incorrecta
-        mensaje.textContent = "Incorrecto -5.";
+        estado.puntos -= 3; // Restar puntos por respuesta incorrecta
+        mensaje.textContent = "Incorrecto -3.";
         mensaje.style.color = "red";
     }
 

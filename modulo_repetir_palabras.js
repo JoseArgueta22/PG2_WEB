@@ -125,7 +125,7 @@ function mostrarResultados() {
 
     let puntosObtenidos = document.getElementById("puntos-obtenidos");
     if (puntosObtenidos) {
-        puntosObtenidos.textContent = "¡Has ganado 25 puntos!";
+        puntosObtenidos.textContent = "¡Has ganado 100 puntos!";
     } else {
         console.error('El elemento #puntos-obtenidos no se encontró en el DOM.');
     }
@@ -184,7 +184,7 @@ function mostrarModalFinal() {
 
         // Enviar los puntos al finalizar el módulo
         if (moduloFinalizado) {
-            enviarPuntos(25); 
+            enviarPuntos(100); 
         }
     };
 }

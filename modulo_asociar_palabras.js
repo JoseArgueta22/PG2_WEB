@@ -87,13 +87,13 @@ function verificarRespuesta() {
 
     if (esRespuestaCorrecta) {
         estado.respuestasCorrectas++;
-        estado.puntos += 10; // sumar puntos
-        mostrarMensaje("Correcto +10", "green");
+        estado.puntos += 5; // sumar puntos
+        mostrarMensaje("Correcto +5", "green");
         reproducirSonido('sonido-correcto');
     } else {
         estado.respuestasIncorrectas++; // contar respuesta incorrecta
-        estado.puntos -= 5; // restar puntos
-        mostrarMensaje("Incorrecto -5", "red");
+        estado.puntos -= 3; // restar puntos
+        mostrarMensaje("Incorrecto -3", "red");
     }
 
     // Actualizar barra de progreso después de verificar la respuesta

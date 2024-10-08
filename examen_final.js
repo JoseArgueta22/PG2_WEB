@@ -106,9 +106,9 @@ function validarParte1() {
         if (respuestaSeleccionada) {
             if (respuestaSeleccionada.value === item.respuestaCorrecta) {
                 respuestasCorrectas++;
-                puntuacionTotal += 10; 
+                puntuacionTotal += 5; 
             } else {
-                puntuacionTotal -= 5; 
+                puntuacionTotal -= 3; 
             }
         }
     });
@@ -151,9 +151,9 @@ function validarParte2() {
         if (respuesta) {
             if (respuestaNormalizada === respuestaCorrectaNormalizada) {
                 respuestasCorrectas++;
-                puntuacionTotal += 10; 
+                puntuacionTotal += 5; 
             } else {
-                puntuacionTotal -= 5; 
+                puntuacionTotal -= 3; 
             }
         }
     });
@@ -231,9 +231,9 @@ function validarParte3() {
         const respuesta = document.getElementById(`dropzone-${index}`).textContent.trim().toLowerCase();
         if (respuesta === item.respuesta.toLowerCase()) {
             respuestasCorrectas++;
-            puntuacionTotal += 10; 
+            puntuacionTotal += 5; 
         } else {
-            puntuacionTotal -= 5; 
+            puntuacionTotal -= 3; 
         }
     });
 
@@ -270,7 +270,7 @@ function mostrarResultadosFinales() {
         document.getElementById("resultado-final").textContent = `Has acertado ${respuestasCorrectas} respuestas. Puntuación total: ${puntuacionTotal}`;
         document.getElementById("resultado-final").style.display = "block";
 
-        const mensajeAdicional = "Recuerda que puedes volver a los módulos para mejorar tu conocimiento. Cuando quieras volver hacer el examen completa los modulos del 1 al 3 otra vez :D Buena suerte";
+        const mensajeAdicional = "Recuerda que puedes volver a los módulos para mejorar tu conocimiento. Cuando quieras volver hacer el examen completa los modulos del 1 al 3 nuevamente :D Buena suerte";
         mostrarModal(`¡Felicidades, terminaste el examen!\n\n${mensajeAdicional}`);
 
         enviarPuntos(puntuacionTotal); 
