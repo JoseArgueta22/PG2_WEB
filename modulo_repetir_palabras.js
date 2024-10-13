@@ -18,10 +18,19 @@ let palabras = [
     "sol", "silla", "serpiente", "sombrero", "sopa",
     "tren", "tigre", "taza", "tomate", "tortuga",
     "vaca", "ventana", "viento", "vela", "vampiro",
-    "zapato", "zorro", "zanahoria", "zebra", "zumo"
+    "zapato", "zorro", "zanahoria", "zebra", "zumo",
+    "abuelita", "barba", "bote", "cabina", "calle",
+    "caramelo", "cerca", "cereza", "cocina", "cuadro",
+    "dedo", "dinosaurio", "doble", "fábrica", "galleta",
+    "gato", "globo", "jugo", "kilo",
+    "lapiz", "mapa", "mariposa", "mesa", "moño",
+    "nieve", "ojo", "oso", "pájaro", "papá",
+    "pescado", "piedra", "pueblo", "química", "ratón",
+    "reina", "sapo", "silla", "sombra", "taza",
+    "tigre", "tornado", "vacaciones", "viento", "yate"
 ];
 
-let cantidadPalabras = 5; // palabras para mostrar por sesion 
+let cantidadPalabras = 20; // palabras para mostrar por sesion 
 let palabrasSeleccionadas = [];
 let indiceActual = 0;
 let moduloFinalizado = false;
@@ -175,6 +184,8 @@ function mostrarModalFinal() {
     let modal = document.getElementById("modal-final");
     let listoBtn = document.getElementById("listo-btn");
 
+    reproducirSonidoFinal(); // Reproducir el sonido
+
     modal.style.display = "block";
 
     // Cierra el modal cuando se hace clic en el botón "Listo"
@@ -256,6 +267,14 @@ function abrirModal(modalId) {
 // Función para ir al módulo 4
 function irAlModulo4() {
     window.location.href = 'bienvenida.html?modulo=4';
+}
+
+// Función para reproducir el sonido al mostrar el modal final
+function reproducirSonidoFinal() {
+    const audio = new Audio('sounds/grito.wav');
+    audio.play().catch(error => {
+        console.error('Error al reproducir el sonido:', error);
+    });
 }
 
 document.getElementById('ir-al-modulo-4').addEventListener('click', irAlModulo4);
