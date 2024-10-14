@@ -46,7 +46,7 @@ $conn->close();
                     <button onclick="irAlModulo(1)">Módulo 1 Asociar palabras con imágenes</button>
                 </div>
                 <div class="module">
-                    <img src="images/oracion.jpg" alt="Módulo 2">
+                    <img src="images/oracion.png" alt="Módulo 2">
                     <button onclick="irAlModulo(2)">Módulo 2 Completar oraciones</button>
                 </div>
                 <div class="module">

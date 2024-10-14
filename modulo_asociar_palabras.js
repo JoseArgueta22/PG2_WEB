@@ -9,9 +9,59 @@ let imagenesYRespuestas = [
     { src: "images/gato.jpg", respuesta: "gato" },
     { src: "images/perro.png", respuesta: "perro" },
     { src: "images/casa.png", respuesta: "casa" },
-    { src: "images/gota.jpg", respuesta: "gota" },
-    { src: "images/pan.png", respuesta: "pan" }
-    
+    { src: "images/gota.png", respuesta: "gota" },//10
+    { src: "images/pan.png", respuesta: "pan" },
+    { src: "images/cohete.png", respuesta: "cohete" },
+    { src: "images/trebol.png", respuesta: "trébol" },
+    { src: "images/elefante.png", respuesta: "elefante" },
+    { src: "images/caballo.png", respuesta: "caballo" },
+    { src: "images/naranja.png", respuesta: "naranja" },
+    { src: "images/sandia.png", respuesta: "sandía" },
+    { src: "images/mango.png", respuesta: "mango" },
+    { src: "images/fresa.png", respuesta: "fresa" },
+    { src: "images/cama.png", respuesta: "cama" },//aqui 20
+    { src: "images/lampara.png", respuesta: "lámpara" },
+    { src: "images/cuchara.png", respuesta: "cuchara" },
+    { src: "images/taza.png", respuesta: "taza" },
+    { src: "images/silla.png", respuesta: "silla" },
+    { src: "images/libros.png", respuesta: "libros" },
+    { src: "images/tren.png", respuesta: "tren" },
+    { src: "images/camioneta.png", respuesta: "camioneta" },
+    { src: "images/motocicleta.png", respuesta: "motocicleta" },
+    { src: "images/barco.png", respuesta: "barco" },
+    { src: "images/avion.png", respuesta: "avión" },//aqui 30
+    { src: "images/bicicleta.png", respuesta: "bicicleta" },
+    { src: "images/pie.png", respuesta: "pie" },
+    { src: "images/mano.png", respuesta: "mano" },
+    { src: "images/ojo.png", respuesta: "ojo" },
+    { src: "images/oreja.png", respuesta: "oreja" },
+    { src: "images/estrella.png", respuesta: "estrella" },
+    { src: "images/arbol.png", respuesta: "árbol" },
+    { src: "images/nube.png", respuesta: "nube" },
+    { src: "images/camisa.png", respuesta: "camisa" },
+    { src: "images/vestido.png", respuesta: "vestido" },//40
+    { src: "images/sombrero.png", respuesta: "sombrero" },
+    { src: "images/vaca.png", respuesta: "vaca" },
+    { src: "images/tortuga.png", respuesta: "tortuga" },
+    { src: "images/gallo.png", respuesta: "gallo" },
+    { src: "images/pollo.png", respuesta: "pollo" },
+    { src: "images/oveja.png", respuesta: "oveja" },
+    { src: "images/leon.png", respuesta: "león" },
+    { src: "images/tiburon.png", respuesta: "tiburón" },
+    { src: "images/uva.png", respuesta: "uvas" },
+    { src: "images/piña.png", respuesta: "piña" },//50
+    { src: "images/melon.png", respuesta: "melón" },
+    { src: "images/tele.png", respuesta: "televisión" },
+    { src: "images/compu.png", respuesta: "computadora" },
+    { src: "images/hipopotamo.png", respuesta: "hipopotamo" },
+    { src: "images/pato.png", respuesta: "pato" },
+    { src: "images/rana.png", respuesta: "rana" },
+    { src: "images/zorro.png", respuesta: "zorro" },
+    { src: "images/hormiga.png", respuesta: "hormiga" },
+    { src: "images/grillo.png", respuesta: "grillo" },
+    { src: "images/tigre.png", respuesta: "tigre" },//60
+
+    //cualquier cosa movi la pregunta del login
 ];
 
 let estado = {
@@ -19,7 +69,7 @@ let estado = {
     respuestasIncorrectas: 0, // contador de respuestas incorrectas
     indiceImagenActual: 0,
     respuestasUsuario: [],
-    totalImagenes: 5,
+    totalImagenes: 20,
     imagenesSeleccionadas: [],
     imagenesRespondidas: [],
     puntos: 0 // acumulador de puntos
