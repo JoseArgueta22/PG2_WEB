@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="login-container">
-        <h1>Bienvenido a la Plataforma</h1>
+        <h1>Bienvenido a la Plataforma Web </h1>
         <!-- Contenedor del formulario de Inicio de Sesión -->
         <div class="login-box">
             <div class="image-container">
@@ -41,6 +41,11 @@
             <div class="recover-username-link">
                 <a href="#" onclick="openRecoverUsernameModal()">¿Olvidaste tu nombre de usuario?</a>
             </div>
+
+            <!-- Nuevo enlace para abrir un PDF -->
+            <div class="pdf-link">
+                <a href="guia.pdf" target="_blank">Guía Rápida</a>
+            </div>
         </div>
     </div>
 
@@ -51,9 +56,7 @@
             <h2>Registrarse</h2>
             <form id="register-form" autocomplete="on">
                 <input type="text" name="nombre" placeholder="Nombre" id="register-nombre" required autocomplete="given-name">
-
                 <input type="text" name="apellido" placeholder="Apellido" id="register-apellido" required autocomplete="family-name">
-
                 <input type="text" name="username" placeholder="Nombre de usuario" id="register-username" required autocomplete="username">
 
                 <div class="password-container">
@@ -71,7 +74,6 @@
                 </select>
 
                 <input type="text" name="respuesta_seguridad" placeholder="Respuesta a la pregunta de seguridad" id="respuesta_seguridad" required autocomplete="off">
-
                 <button type="submit">Registrarse</button>
             </form>
         </div>
@@ -84,9 +86,7 @@
             <h2>Restablecer Contraseña</h2>
             <form id="recuperar-form" autocomplete="on">
                 <input type="text" name="username" placeholder="Nombre de usuario" id="recover-username" required autocomplete="username">
-
                 <input type="text" name="respuesta_seguridad" placeholder="Respuesta a la pregunta de seguridad" id="recover-respuesta" required autocomplete="off">
-
                 <div class="password-container">
                     <input type="password" name="nueva_contrasena" id="recover-password" placeholder="Nueva contraseña" required autocomplete="new-password">
                     <span class="eye-icon" id="recover-password-eye" onclick="togglePassword('recover-password')">👁️</span>
@@ -103,7 +103,6 @@
             <h2>Recuperar Nombre de Usuario</h2>
             <form id="recover-username-form" action="recuperar_usuario.php" method="POST" autocomplete="on">
                 <input type="text" name="respuesta_seguridad" placeholder="Respuesta de seguridad" id="recover-username-respuesta" required autocomplete="off">
-
                 <div class="password-container">
                     <input type="password" name="password" id="recover-username-password" placeholder="Contraseña" required autocomplete="current-password">
                     <span class="eye-icon" id="recover-username-password-eye" onclick="togglePassword('recover-username-password')">👁️</span>
